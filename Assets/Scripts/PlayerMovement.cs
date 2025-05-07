@@ -105,7 +105,7 @@ public class PlayerMovement : MonoBehaviour
     void FixedUpdate()
     {
         MovePlayer();
-        Debug.Log($"Grounded: {grounded}");
+       // Debug.Log($"Grounded: {grounded}");
         
 
 

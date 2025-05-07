@@ -2,54 +2,64 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class WallRunning : MonoBehaviour
 {
 
-[Header("Wall Running")]
-public LayerMask whatIsWall;
-public LayerMask whatIsGround;
-public float wallRunForce;
-public float maxWallRunTime;
-    
+    [Header("Wall Running")]
+    public LayerMask whatIsWall;
+    public LayerMask whatIsGround;
+    public float wallRunForce;
+
     public float wallJumpUpForce;
-public float wallJumpSideForce;
+    public float wallJumpSideForce;
+    public float maxWallRunTime;
 
-private float wallRunTimer;
+    private float wallRunTimer;
 
-public float wallClimbSpeed;
+    public float wallClimbSpeed;
 
-[Header("Input")]
-private float horizontalInput;
-private float verticalInput;
+    [Header("Input")]
+    private float horizontalInput;
+    private float verticalInput;
 
-public KeyCode jumpKey = KeyCode.Space;
-public KeyCode upwardsRunKey = KeyCode.LeftShift;
-public KeyCode downwardsRunKey = KeyCode.LeftControl;
+    public KeyCode jumpKey = KeyCode.Space;
+    public KeyCode upwardsRunKey = KeyCode.LeftShift;
+    public KeyCode downwardsRunKey = KeyCode.LeftControl;
 
-private bool upwardsRunning;
-private bool downwardsRunning;
+    private bool upwardsRunning;
+    private bool downwardsRunning;
 
-[Header("Detection")]
-public float wallCheckDistance;
-public float minJumpHeight;
-private RaycastHit leftWallhit;
-private RaycastHit rightWallhit;
+    [Header("Detection")]
+    public float wallCheckDistance;
+    public float minJumpHeight;
+    private RaycastHit leftWallhit;
+    private RaycastHit rightWallhit;
 
-private bool wallRight;
-private bool wallLeft;
+    private bool wallRight;
+    private bool wallLeft;
 
-[Header("Exiting")]
+    [Header("Exiting")]
 
-private bool exitingWall;
-public float exitWallTime;
+    private bool exitingWall;
+    public float exitWallTime;
 
-private float exitWallTimer;
+    private float exitWallTimer;
+
+    private Vector3 lastWallNormal; //la ultima normal de la pared
 
 
-[Header("References")]
-public Transform orientation;
-private PlayerMovement pm;
-private Rigidbody rb;
+    [Header("References")]
+    public Transform orientation;
+    private PlayerMovement pm;
+    private Rigidbody rb;
+
+    public PlayerCam cam;
+
+
+    [Header("Gravity")]
+    public bool useGravity;
+    public float gravityCounterForce;
 
 
     // Start is called before the first frame update
@@ -62,29 +72,34 @@ private Rigidbody rb;
     // Update is called once per frame
     void Update()
     {
-     CheckForWall();   
+        CheckForWall();
         StateMachine();
+        
     }
 
-    void FixedUpdate(){
+    void FixedUpdate()
+    {
 
-    if (pm.wallrunning)
-        WallRunningMovement();
+        if (pm.wallrunning)
+            WallRunningMovement();
 
-    
+
     }
 
 
-    private void CheckForWall(){
+    private void CheckForWall()
+    {
         wallRight = Physics.Raycast(transform.position, orientation.right, out rightWallhit, wallCheckDistance, whatIsWall);
         wallLeft = Physics.Raycast(transform.position, -orientation.right, out leftWallhit, wallCheckDistance, whatIsWall);
     }
 
-    private bool AboveGround(){
-        return Physics.Raycast(transform.position, Vector3.down, minJumpHeight, whatIsGround);
+    private bool AboveGround()
+    {
+        return !Physics.Raycast(transform.position, Vector3.down, minJumpHeight, whatIsGround);
     }
 
-    private void StateMachine(){
+    private void StateMachine()
+    {
         //Getting Inputs
         horizontalInput = Input.GetAxis("Horizontal");
         verticalInput = Input.GetAxis("Vertical");
@@ -93,53 +108,79 @@ private Rigidbody rb;
         downwardsRunning = Input.GetKey(downwardsRunKey);
 
         //State 1 - Wall Running
-        if ((wallLeft || wallRight ) && verticalInput > 0 && AboveGround()  && !exitingWall)
+        if ((wallLeft || wallRight) && verticalInput > 0 && AboveGround() && !exitingWall)
         {
-           if (!pm.wallrunning)
-           StartWallRun();
-        }
+            if (!pm.wallrunning)
+                StartWallRun();
 
-        if (Input.GetKeyDown(jumpKey) && pm.wallrunning)
-        {
-            WallJump();
-        }
+            //wallrun timer
+            if (wallRunTimer > 0)
+                wallRunTimer -= Time.deltaTime;
 
-        else if(exitingWall) 
+            if (wallRunTimer <= 0 && pm.wallrunning)
+            {
+                exitingWall = true;
+            }
+
+
+            //wall jump
+            if (Input.GetKeyDown(jumpKey)) WallJump();
+        }
+        // State 2 - Exiting
+        else if (exitingWall)
         {
             if (pm.wallrunning)
                 StopWallRun();
 
-                if (exitWallTimer > 0)
+            if (exitWallTimer > 0)
                 exitWallTimer -= Time.deltaTime;
 
-                if (exitWallTimer <= 0)
-                
-                    exitingWall = false;                
-        }
+            if (exitWallTimer <= 0)
+                exitingWall = false;
 
+
+
+        }
+        // State 3 - None
         else
         {
             if (pm.wallrunning)
                 StopWallRun();
         }
+
+
+
+        if (pm.grounded)
+        {
+            exitWallTimer = exitWallTime;
+            exitingWall = false;
+        }
+
     }
 
     private void StartWallRun()
     {
         pm.wallrunning = true;
+        wallRunTimer = maxWallRunTime;
+        rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z); // Reset the Y velocity to 0
 
+
+        //apply camera effects
+        cam.DoFov(90f);
+        if (wallLeft) cam.DoTilt(-5f);
+        if (wallRight) cam.DoTilt(5f); 
 
     }
 
     private void WallRunningMovement()
     {
-rb.useGravity = false; // Disable gravity while wall running
-rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z); // Reset the Y velocity to 0
+        rb.useGravity = useGravity;
 
         Vector3 wallNormal = wallRight ? rightWallhit.normal : leftWallhit.normal;
         Vector3 wallForward = Vector3.Cross(wallNormal, transform.up);
 
-        if((orientation.forward - wallForward).magnitude > (orientation.forward - -wallForward).magnitude){
+        if ((orientation.forward - wallForward).magnitude > (orientation.forward - -wallForward).magnitude)
+        {
             wallForward = -wallForward;
         }
         //forward force
@@ -147,14 +188,17 @@ rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z); // Reset the Y veloc
 
 
         //upward/downward force
-        if(upwardsRunning)
+        if (upwardsRunning)
             rb.velocity = new Vector3(rb.velocity.x, wallClimbSpeed, rb.velocity.z); // Climb up the wall
-        if(downwardsRunning)
+        if (downwardsRunning)
             rb.velocity = new Vector3(rb.velocity.x, -wallClimbSpeed, rb.velocity.z);
         //push to wall force
-        if(!(wallLeft && horizontalInput > 0) && !(wallRight && horizontalInput < 0))
-                rb.AddForce(-wallNormal * 100, ForceMode.Force);
+        if (!(wallLeft && horizontalInput > 0) && !(wallRight && horizontalInput < 0))
+            rb.AddForce(-wallNormal * 100, ForceMode.Force);
 
+
+        if (useGravity) 
+         rb.AddForce(transform.up * gravityCounterForce, ForceMode.Force);
     }
 
     private void StopWallRun()
@@ -162,18 +206,45 @@ rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z); // Reset the Y veloc
         pm.wallrunning = false;
         rb.useGravity = true; // Re-enable gravity when not wall running
         rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z); // Reset the Y velocity to 0
+
+       /*// Reset the last wall normal when wall running stops
+        lastWallNormal = Vector3.zero; */
+        
+        //Reset camera effects
+        cam.DoFov(80f);
+        cam.DoTilt(0f);
+        
+
+
     }
 
     private void WallJump()
     {
-            //enter exiting wall state
-            exitingWall = true;
-            exitWallTimer = exitWallTime;
+        // Determine the current wall's normal
+        Vector3 currentWallNormal = wallRight ? rightWallhit.normal : leftWallhit.normal;
 
-        Vector3  wallNormal = wallRight ? rightWallhit.normal : leftWallhit.normal;
-        Vector3 forceToApply = wallNormal * wallJumpSideForce + transform.up * wallJumpUpForce;
 
-        //add force and reset velocity
+        exitingWall = true;
+        exitWallTimer = exitWallTime;
+
+        // Check if the player is trying to jump from the same wall
+        /*  if (currentWallNormal == lastWallNormal)
+         {
+             return; // Prevent jumping again from the same wall
+         }
+         Debug.Log($"Current Wall Normal: {currentWallNormal}, Last Wall Normal: {lastWallNormal}");
+
+         // Enter exiting wall state
+
+         // Store the current wall's normal as the last wall jumped from
+         lastWallNormal = currentWallNormal; */
+
+
+
+        // Calculate the force to apply for the wall jump
+        Vector3 forceToApply = transform.up * wallJumpUpForce + currentWallNormal * wallJumpSideForce;
+
+        // Reset velocity and apply the jump force
         rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z); // Reset the Y velocity to 0 before jumping
         rb.AddForce(forceToApply, ForceMode.Impulse);
     }
