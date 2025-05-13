@@ -74,7 +74,7 @@ public class WallRunning : MonoBehaviour
     {
         CheckForWall();
         StateMachine();
-        
+
     }
 
     void FixedUpdate()
@@ -168,7 +168,7 @@ public class WallRunning : MonoBehaviour
         //apply camera effects
         cam.DoFov(90f);
         if (wallLeft) cam.DoTilt(-5f);
-        if (wallRight) cam.DoTilt(5f); 
+        if (wallRight) cam.DoTilt(5f);
 
     }
 
@@ -197,8 +197,8 @@ public class WallRunning : MonoBehaviour
             rb.AddForce(-wallNormal * 100, ForceMode.Force);
 
 
-        if (useGravity) 
-         rb.AddForce(transform.up * gravityCounterForce, ForceMode.Force);
+        if (useGravity)
+            rb.AddForce(transform.up * gravityCounterForce, ForceMode.Force);
     }
 
     private void StopWallRun()
@@ -207,42 +207,30 @@ public class WallRunning : MonoBehaviour
         rb.useGravity = true; // Re-enable gravity when not wall running
         rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z); // Reset the Y velocity to 0
 
-       /*// Reset the last wall normal when wall running stops
-        lastWallNormal = Vector3.zero; */
-        
+        /*// Reset the last wall normal when wall running stops
+         lastWallNormal = Vector3.zero; */
+
         //Reset camera effects
         cam.DoFov(80f);
         cam.DoTilt(0f);
-        
+
 
 
     }
 
     private void WallJump()
     {
-        // Determine the current wall's normal
-        Vector3 currentWallNormal = wallRight ? rightWallhit.normal : leftWallhit.normal;
-
-
         exitingWall = true;
         exitWallTimer = exitWallTime;
 
-        // Check if the player is trying to jump from the same wall
-        /*  if (currentWallNormal == lastWallNormal)
-         {
-             return; // Prevent jumping again from the same wall
-         }
-         Debug.Log($"Current Wall Normal: {currentWallNormal}, Last Wall Normal: {lastWallNormal}");
+        // Determine the current wall's normal
+        Vector3 wallNormal = wallRight ? rightWallhit.normal : leftWallhit.normal;
 
-         // Enter exiting wall state
-
-         // Store the current wall's normal as the last wall jumped from
-         lastWallNormal = currentWallNormal; */
-
-
+        // Force the player to jump away from the wall
+        Vector3 jumpDirection = wallRight ? -orientation.right : orientation.right;
 
         // Calculate the force to apply for the wall jump
-        Vector3 forceToApply = transform.up * wallJumpUpForce + currentWallNormal * wallJumpSideForce;
+        Vector3 forceToApply = transform.up * wallJumpUpForce + jumpDirection * wallJumpSideForce;
 
         // Reset velocity and apply the jump force
         rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z); // Reset the Y velocity to 0 before jumping
