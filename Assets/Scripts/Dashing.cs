@@ -54,32 +54,32 @@ public class Dashing : MonoBehaviour
     }
 
     // Update is called once per frame
-   void Update()
-{
-    if (Input.GetKeyDown(dashKey))
-        Dash();
-
-    if (dashCdTimer > 0)
-        dashCdTimer -= Time.deltaTime;
-
-    if (pm.grounded)
-        dashCdTimer = 0;
-
-    // Update withinBashDistance based on raycast in the player's forward direction
-    withinBashDistance = Physics.Raycast(transform.position, orientation.forward, bashDistance, whatIsBreakable);
-
-    // Check for mouse click to destroy breakable objects
-    if (Input.GetMouseButtonDown(0)) // Left mouse button
+    void Update()
     {
-        DestroyBreakableObject();
+        if (Input.GetKeyDown(dashKey))
+            Dash();
 
-        // Launch the player upwards if grounded and looking at the ground
+        if (dashCdTimer > 0)
+            dashCdTimer -= Time.deltaTime;
+
         if (pm.grounded)
+            dashCdTimer = 0;
+
+        // Update withinBashDistance based on raycast in the camera's forward direction
+        withinBashDistance = Physics.Raycast(playerCam.position, playerCam.forward, bashDistance, whatIsBreakable);
+
+        // Check for mouse click to destroy breakable objects
+        if (Input.GetMouseButtonDown(0)) // Left mouse button
         {
-            LaunchUpwards();
+            DestroyBreakableObject();
+
+            // Launch the player upwards if grounded and looking at the ground
+            if (pm.grounded)
+            {
+                LaunchUpwards();
+            }
         }
     }
-}
 
 
     private void Dash()
@@ -153,65 +153,81 @@ public class Dashing : MonoBehaviour
 
     }
 
-  private void DestroyBreakableObject()
-{
-    // Check if the player is within bash distance
-    if (!withinBashDistance) return;
-
-    // Cast a ray from the camera to the mouse position
-    Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-    RaycastHit hit;
-
-    // Check if the ray hits an object within the whatIsBreakable layer
-    if (Physics.Raycast(ray, out hit, Mathf.Infinity, whatIsBreakable))
+    private void DestroyBreakableObject()
     {
-        // Destroy the object if it is in the whatIsBreakable layer
-        Debug.Log($"Destroyed: {hit.collider.gameObject.name}");
-        GameObject destroyedObject = hit.collider.gameObject;
-        Destroy(destroyedObject);
+        // Check if the player is within bash distance
+        if (!withinBashDistance) return;
 
-        // Call the custom function
-        OnBreakableObjectDestroyed(destroyedObject);
+        // Cast a ray from the camera to the mouse position
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        RaycastHit hit;
+
+        // Check if the ray hits an object within the whatIsBreakable layer
+        if (Physics.Raycast(ray, out hit, Mathf.Infinity, whatIsBreakable))
+        {
+            // Get the object that was hit
+            GameObject destroyedObject = hit.collider.gameObject;
+
+            // Disable the object
+            destroyedObject.SetActive(false);
+
+            // Notify the Romperobjeto script to handle spawning the destroyed object
+            Romperobjeto ro = destroyedObject.GetComponent<Romperobjeto>();
+            if (ro != null)
+            {
+                ro.DestruirYRemplazar();
+            }
+
+            // Notify the StateChecker to handle re-enabling the wall
+            StateChecker stateChecker = FindObjectOfType<StateChecker>();
+            if (stateChecker != null)
+            {
+                stateChecker.RegisterDestroyedWall(destroyedObject, null);
+            }
+
+            // Call the custom function
+            OnBreakableObjectDestroyed(destroyedObject);
+        }   
     }
-}
 
-private void OnBreakableObjectDestroyed(GameObject destroyedObject)
-{
-    // Reset the dash cooldown
-    dashCdTimer = 0;
-    if (!pm.grounded) {
-    // Apply an upward force to the player
-
-   rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z); // Reset the Y velocity to 0 before jumping
-
-    Vector3 upwardForce = new Vector3(0, bashUp, 0);
-
-    // Apply a backward force relative to the player's orientation
-    Vector3 backwardForce = -orientation.forward * bashBackwards;
-
-    // Combine the upward and backward forces
-    Vector3 combinedForce = upwardForce + backwardForce;
-
-    // Apply the combined force to the player's Rigidbody
-    rb.AddForce(combinedForce, ForceMode.Impulse);
-
-    Debug.Log($"Player launched upwards and backwards after destroying: {destroyedObject.name}");
-    }
-}
-
-private void LaunchUpwards()
-{
-    // Check if the player is looking at the ground
-    if (playerCam.forward.y > -0.5f) // Adjust the threshold (-0.5f) as needed
+    private void OnBreakableObjectDestroyed(GameObject destroyedObject)
     {
-        Debug.Log("Player is not looking at the ground. No upward force applied.");
-        return;
+        // Reset the dash cooldown
+        dashCdTimer = 0;
+        if (!pm.grounded)
+        {
+            // Apply an upward force to the player
+
+            rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z); // Reset the Y velocity to 0 before jumping
+
+            Vector3 upwardForce = new Vector3(0, bashUp, 0);
+
+            // Apply a backward force relative to the player's orientation
+            Vector3 backwardForce = -orientation.forward * bashBackwards;
+
+            // Combine the upward and backward forces
+            Vector3 combinedForce = upwardForce + backwardForce;
+
+            // Apply the combined force to the player's Rigidbody
+            rb.AddForce(combinedForce, ForceMode.Impulse);
+
+            Debug.Log($"Player launched upwards and backwards after destroying: {destroyedObject.name}");
+        }
     }
 
-    // Apply an upward force to the player's Rigidbody
-    Vector3 upwardForce = new Vector3(0, groundHitUp, 0); // Use the bashUp value for the force
-    rb.AddForce(upwardForce, ForceMode.Impulse);
+    private void LaunchUpwards()
+    {
+        // Check if the player is looking at the ground
+        if (playerCam.forward.y > -0.5f) // Adjust the threshold (-0.5f) as needed
+        {
+            Debug.Log("Player is not looking at the ground. No upward force applied.");
+            return;
+        }
 
-    Debug.Log("Player launched upwards!");
-}
+        // Apply an upward force to the player's Rigidbody
+        Vector3 upwardForce = new Vector3(0, groundHitUp, 0); // Use the bashUp value for the force
+        rb.AddForce(upwardForce, ForceMode.Impulse);
+
+        Debug.Log("Player launched upwards!");
+    }
 }

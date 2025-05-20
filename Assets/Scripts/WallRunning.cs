@@ -108,12 +108,12 @@ public class WallRunning : MonoBehaviour
         downwardsRunning = Input.GetKey(downwardsRunKey);
 
         //State 1 - Wall Running
-        if ((wallLeft || wallRight) && verticalInput > 0 && AboveGround() && !exitingWall)
+        if ((wallLeft || wallRight) && AboveGround() && !exitingWall)
         {
             if (!pm.wallrunning)
                 StartWallRun();
 
-            //wallrun timer
+            // wallrun timer
             if (wallRunTimer > 0)
                 wallRunTimer -= Time.deltaTime;
 
@@ -122,8 +122,7 @@ public class WallRunning : MonoBehaviour
                 exitingWall = true;
             }
 
-
-            //wall jump
+            // wall jump
             if (Input.GetKeyDown(jumpKey)) WallJump();
         }
         // State 2 - Exiting
@@ -223,17 +222,17 @@ public class WallRunning : MonoBehaviour
         exitingWall = true;
         exitWallTimer = exitWallTime;
 
-        // Determine the current wall's normal
         Vector3 wallNormal = wallRight ? rightWallhit.normal : leftWallhit.normal;
+        Vector3 forceToApply = transform.up * wallJumpUpForce + wallNormal * wallJumpSideForce;
 
-        // Force the player to jump away from the wall
-        Vector3 jumpDirection = wallRight ? -orientation.right : orientation.right;
+        // Do NOT reset the Y velocity here
+        // rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
 
-        // Calculate the force to apply for the wall jump
-        Vector3 forceToApply = transform.up * wallJumpUpForce + jumpDirection * wallJumpSideForce;
-
-        // Reset velocity and apply the jump force
-        rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z); // Reset the Y velocity to 0 before jumping
         rb.AddForce(forceToApply, ForceMode.Impulse);
+
+        // Extra: push player a bit away from the wall to avoid instant re-cling
+        rb.position += wallNormal * 0.1f;
+
+        Debug.Log($"WallJump! Force: {forceToApply}");
     }
 }
