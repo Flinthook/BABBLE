@@ -117,9 +117,9 @@ public class PlayerMovement : MonoBehaviour
                 Die();
             }
         }
-        if (grounded)
+        else
         {
-            fallTimer = 0f; // Only reset when actually grounded
+            fallTimer = 0f; // Reset timer when grounded or not falling
         }
 
         StateHandler(); // Handle the player's state (walking, sprinting, air)
@@ -187,67 +187,66 @@ public class PlayerMovement : MonoBehaviour
 
     private void StateHandler()
     {
-        // Mode - Dead
         if (isDead)
         {
             state = MovementState.dead;
             moveSpeed = 0f;
-            // Do NOT return here! Let the rest of the function run after respawn.
+            return;
         }
 
         // Mode - Sprint
-        if (grounded && Input.GetKey(sprintKey) && !isDead)
+        if (grounded && Input.GetKey(sprintKey))
         {
-            state = MovementState.sprinting;
-            desiredMoveSpeed = sprintSpeed;
+            state = MovementState.sprinting; // Set the state to sprinting
+            desiredMoveSpeed = sprintSpeed; // Set the movement speed to sprint speed  
         }
         // Mode - Walk
-        else if (grounded && !isDead)
+        else if (grounded)
         {
-            state = MovementState.walking;
-            desiredMoveSpeed = walkSpeed;
+            state = MovementState.walking; // Set the state to walking
+            desiredMoveSpeed = walkSpeed; // Set the movement speed to walk speed
         }
         // Mode - Air
-        else if (!isDead)
+        else
         {
-            state = MovementState.air;
+            state = MovementState.air; // Set the state to air  
             if (desiredMoveSpeed < sprintSpeed)
                 desiredMoveSpeed = walkSpeed;
             else
-                desiredMoveSpeed = sprintSpeed;
+                desiredMoveSpeed = sprintSpeed; // Set the movement speed to sprint speed
         }
-        // Mode - Wallrunning
-        if (wallrunning && !isDead)
+        // Mode -Wallruning
+        if (wallrunning)
         {
-            state = MovementState.wallrunning;
-            desiredMoveSpeed = wallrunSpeed;
+            state = MovementState.wallrunning; // Set the state to wallrunning
+            desiredMoveSpeed = wallrunSpeed; // Set the movement speed to wallrun speed    
         }
         // Mode - Dashing
-        if (dashing && !isDead)
+        if (dashing)
         {
-            state = MovementState.dashing;
-            desiredMoveSpeed = dashSpeed;
-            speedChangeFactor = dashSpeedChangeFactor;
+            state = MovementState.dashing; // Set the state to dashing
+            desiredMoveSpeed = dashSpeed; // Set the movement speed to dash speed    
+            speedChangeFactor = dashSpeedChangeFactor; // Set the speed change factor for dashing
         }
 
         bool desiredMoveSpeedHasChanged = desiredMoveSpeed != lastDesiredMoveSpeed;
-        if (lastState == MovementState.dashing) keepMomentum = true;
+        if (lastState == MovementState.dashing) keepMomentum = true; // Keep momentum if the last state was dashing
         if (desiredMoveSpeedHasChanged)
         {
             if (keepMomentum)
             {
-                StopAllCoroutines();
-                StartCoroutine(SmoothlyLerpMoveSpeed());
+                StopAllCoroutines(); // Stop all coroutines to prevent multiple speed changes
+                StartCoroutine(SmoothlyLerpMoveSpeed()); // Smoothly change the speed if desired speed has changed
             }
             else
             {
-                StopAllCoroutines();
-                moveSpeed = desiredMoveSpeed;
+                StopAllCoroutines(); // Stop all coroutines to prevent multiple speed changes
+                moveSpeed = desiredMoveSpeed; // Set the movement speed to the desired movement speed
             }
         }
 
         lastDesiredMoveSpeed = desiredMoveSpeed;
-        lastState = state;
+        lastState = state; // Store the last state
     }
 
     private float speedChangeFactor;
@@ -277,7 +276,7 @@ public class PlayerMovement : MonoBehaviour
         state = MovementState.dead;
         rb.velocity = Vector3.zero;
         // Optionally: play death animation, disable controls, etc.
-        Invoke(nameof(Respawn), 1.0f); // Wait 1 second before respawn
+        Invoke(nameof(Respawn), 0.1f); // Wait 1 second before respawn
     }
 
     private void Respawn()

@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 2517365838313944991}
   - component: {fileID: 7547024437114096433}
   - component: {fileID: 324718922728695331}
+  - component: {fileID: 3939983947031577813}
+  - component: {fileID: 1332540361629147886}
   m_Layer: 0
   m_Name: Vasito
   m_TagString: Untagged
@@ -26,13 +28,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2256499384219317726}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
-  m_LocalPosition: {x: -93.134186, y: 4.361972, z: -10.088291}
-  m_LocalScale: {x: 61.179153, y: 61.179153, z: 61.179153}
-  m_ConstrainProportionsScale: 0
+  m_LocalRotation: {x: 0.010599126, y: 0.033708427, z: 0.29976934, w: 0.9533571}
+  m_LocalPosition: {x: 224.65732, y: 484.0738, z: -188.04875}
+  m_LocalScale: {x: 27.81, y: 27.81, z: 27.81}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 4.05, z: 34.91}
 --- !u!33 &7547024437114096433
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -83,3 +85,51 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!54 &3939983947031577813
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2256499384219317726}
+  serializedVersion: 4
+  m_Mass: 0.1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!65 &1332540361629147886
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2256499384219317726}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.017005991, y: 0.019636827, z: 0.019541733}
+  m_Center: {x: 0.000000003259629, y: 7.6653094e-17, z: -0.00022960966}
