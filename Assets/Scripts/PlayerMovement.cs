@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI; // Added for UI elements
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -33,6 +34,13 @@ public class PlayerMovement : MonoBehaviour
     [Header("Keybinds")]
     public KeyCode jumpKey = KeyCode.Space;
     public KeyCode sprintKey = KeyCode.LeftShift;
+
+    [Header("UI Warning")]
+    public Image screenOverlay; // Assign a UI Image covering the screen in the Canvas
+    public Color warningColor = new Color(1, 0, 0, 0.3f); // Semi-transparent red
+    public float warningFadeSpeed = 5f; // How fast to fade in/out
+
+    private bool warningActive = false;
 
     bool readyToJump;
     float horizontalInput;
@@ -75,6 +83,14 @@ public class PlayerMovement : MonoBehaviour
     {
         if (isDead) return; // Prevent input/movement when dead
 
+        // --- Add this block to respawn on R key press ---
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            Die();
+            return;
+        }
+        // --- End added block ---
+
         MyInput(); // Get input from the player
 
         // Check if the player is grounded
@@ -112,6 +128,15 @@ public class PlayerMovement : MonoBehaviour
         if (!grounded && rb.velocity.y < 0)
         {
             fallTimer += Time.deltaTime;
+            // Show warning 2 seconds before death
+            if (maxFallTime - fallTimer <= 2f && fallTimer < maxFallTime)
+            {
+                warningActive = true;
+            }
+            else
+            {
+                warningActive = false;
+            }
             if (fallTimer > maxFallTime)
             {
                 Die();
@@ -119,7 +144,15 @@ public class PlayerMovement : MonoBehaviour
         }
         else
         {
-            fallTimer = 0f; // Reset timer when grounded or not falling
+            fallTimer = 0f;
+            warningActive = false;
+        }
+
+        // Handle the overlay fade
+        if (screenOverlay)
+        {
+            Color target = warningActive ? warningColor : new Color(1, 0, 0, 0);
+            screenOverlay.color = Color.Lerp(screenOverlay.color, target, Time.deltaTime * warningFadeSpeed);
         }
 
         StateHandler(); // Handle the player's state (walking, sprinting, air)
