@@ -223,15 +223,17 @@ public class WallRunning : MonoBehaviour
         exitWallTimer = exitWallTime;
 
         Vector3 wallNormal = wallRight ? rightWallhit.normal : leftWallhit.normal;
+
+        // Reset Y velocity to ensure upward force is effective
+        rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
+
         Vector3 forceToApply = transform.up * wallJumpUpForce + wallNormal * wallJumpSideForce;
-
-        // Do NOT reset the Y velocity here
-        // rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
-
         rb.AddForce(forceToApply, ForceMode.Impulse);
 
-        // Extra: push player a bit away from the wall to avoid instant re-cling
-        rb.position += wallNormal * 0.1f;
+        // Push player away from the wall and slightly upwards
+        float pushAwayDistance = 0.1f;
+        float pushUpDistance = 0.1f; // You can tweak this value
+        rb.position += wallNormal * pushAwayDistance + Vector3.up * pushUpDistance;
 
         Debug.Log($"WallJump! Force: {forceToApply}");
     }
