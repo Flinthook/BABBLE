@@ -24,9 +24,9 @@ public class SoundCanvas : MonoBehaviour
     {
         
 
-        if(Input.GetKeyDown(KeyCode.E))
+        if(Input.GetKeyDown(KeyCode.F))
         {
-            Debug.Log("E");
+            Debug.Log("F");
             //si el objeto esta activo lo desactivo
             if (_soundCanvas.activeSelf)
             {

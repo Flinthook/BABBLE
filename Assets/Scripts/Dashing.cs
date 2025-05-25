@@ -46,6 +46,11 @@ public class Dashing : MonoBehaviour
     [Header("Input")]
     public KeyCode dashKey = KeyCode.LeftShift;
 
+    [Header("Dash & Bash Audio")]
+    public AudioSource dashSource;         // Assign in Inspector (can be same as other sources)
+    public AudioClip dashClip;             // Dash sound
+    public AudioClip[] bashClips;          // Multiple bash (hammer) sounds
+
 
     void Start()
     {
@@ -89,6 +94,10 @@ public class Dashing : MonoBehaviour
         else dashCdTimer = dashCd;
 
         pm.dashing = true;
+
+        // Play dash sound
+        if (dashSource != null && dashClip != null)
+            dashSource.PlayOneShot(dashClip);
 
         cam.DoFov(dashFov);
 
@@ -192,6 +201,13 @@ public class Dashing : MonoBehaviour
 
     private void OnBreakableObjectDestroyed(GameObject destroyedObject)
     {
+        // Play random bash sound
+        if (dashSource != null && bashClips != null && bashClips.Length > 0)
+        {
+            int index = Random.Range(0, bashClips.Length);
+            dashSource.PlayOneShot(bashClips[index]);
+        }
+
         // Reset the dash cooldown
         dashCdTimer = 0;
         if (!pm.grounded)
@@ -222,6 +238,13 @@ public class Dashing : MonoBehaviour
         {
             Debug.Log("Player is not looking at the ground. No upward force applied.");
             return;
+        }
+
+        // Play random bash sound for ground jump
+        if (dashSource != null && bashClips != null && bashClips.Length > 0)
+        {
+            int index = Random.Range(0, bashClips.Length);
+            dashSource.PlayOneShot(bashClips[index]);
         }
 
         // Apply an upward force to the player's Rigidbody

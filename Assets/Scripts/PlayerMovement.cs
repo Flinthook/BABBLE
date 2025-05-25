@@ -40,6 +40,21 @@ public class PlayerMovement : MonoBehaviour
     public Color warningColor = new Color(1, 0, 0, 0.3f); // Semi-transparent red
     public float warningFadeSpeed = 5f; // How fast to fade in/out
 
+    [Header("Footstep Audio")]
+    public AudioSource footstepSource;         // Assign in Inspector
+    public AudioClip[] walkClips;              // Walking sounds
+    public AudioClip[] runClips;               // Running sounds
+    public float walkStepInterval = 0.5f;      // Time between walking steps
+    public float runStepInterval = 0.35f;      // Time between running steps
+
+    [Header("Jump Audio")]
+    public AudioSource jumpSource; // Assign a separate AudioSource for jumps
+    public AudioClip[] jumpClips; // Assign multiple jump/wall jump sounds
+
+    [Header("Respawn Audio")]
+    public AudioSource respawnSource;      // Assign in Inspector (can reuse jumpSource if you want)
+    public AudioClip respawnClip;          // Assign your respawn sound
+
     private bool warningActive = false;
 
     bool readyToJump;
@@ -71,6 +86,8 @@ public class PlayerMovement : MonoBehaviour
 
     private float fallTimer = 0f;
     private bool isDead = false;
+
+    private bool playingFootstep = false;
 
     void Start()
     {
@@ -156,6 +173,31 @@ public class PlayerMovement : MonoBehaviour
         }
 
         StateHandler(); // Handle the player's state (walking, sprinting, air)
+
+        // Footstep audio logic
+        bool isMoving = grounded && (Mathf.Abs(horizontalInput) > 0.1f || Mathf.Abs(verticalInput) > 0.1f) && !dashing;
+        // --- Play running sound also when wallrunning ---
+        bool isWallrunning = wallrunning && (Mathf.Abs(horizontalInput) > 0.1f || Mathf.Abs(verticalInput) > 0.1f) && !dashing;
+
+        if (isMoving || isWallrunning)
+        {
+            bool isRunning = Input.GetKey(sprintKey) || isWallrunning;
+            footstepTimer += Time.deltaTime;
+            float interval = isRunning ? runStepInterval : walkStepInterval;
+            if (footstepTimer >= interval)
+            {
+                PlayFootstep(isRunning);
+                footstepTimer = 0f;
+            }
+        }
+        else
+        {
+            footstepTimer = walkStepInterval; // Reset timer when not moving
+
+            // --- Stop footstep audio immediately if not moving ---
+            if (footstepSource != null && footstepSource.isPlaying)
+                footstepSource.Stop();
+        }
     }
 
     void FixedUpdate()
@@ -209,8 +251,15 @@ public class PlayerMovement : MonoBehaviour
 
     private void Jump()
     {
-        rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z); // Reset the vertical velocity to 0 before jumping
+        rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
         rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
+
+        // Play a random jump sound
+        if (jumpSource != null && jumpClips != null && jumpClips.Length > 0)
+        {
+            int index = Random.Range(0, jumpClips.Length);
+            jumpSource.PlayOneShot(jumpClips[index]);
+        }
     }
 
     private float desiredMoveSpeed; // Desired movement speed
@@ -309,7 +358,7 @@ public class PlayerMovement : MonoBehaviour
         state = MovementState.dead;
         rb.velocity = Vector3.zero;
         // Optionally: play death animation, disable controls, etc.
-        Invoke(nameof(Respawn), 0.1f); // Wait 1 second before respawn
+        Invoke(nameof(Respawn), 0.1f); // Wait 0.1 seconds before respawn
     }
 
     private void Respawn()
@@ -322,12 +371,32 @@ public class PlayerMovement : MonoBehaviour
         isDead = false;
         fallTimer = 0f;
         state = MovementState.air; // Or whatever state is appropriate
+
+        // Play respawn sound
+        if (respawnSource != null && respawnClip != null)
+            respawnSource.PlayOneShot(respawnClip);
     }
 
     // --- Checkpoint Setter ---
     public void SetCheckpoint(Transform newCheckpoint)
     {
         checkpoint = newCheckpoint;
+    }
+
+    private float footstepTimer = 0f;
+
+    // Add this method:
+    private void PlayFootstep(bool running)
+    {
+        if (footstepSource == null) return;
+
+        AudioClip[] clips = running ? runClips : walkClips;
+        if (clips.Length == 0) return;
+
+        int index = Random.Range(0, clips.Length);
+        footstepSource.clip = clips[index];
+        footstepSource.Play();
+        playingFootstep = true;
     }
 }
 
