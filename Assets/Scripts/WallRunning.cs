@@ -61,6 +61,9 @@ public class WallRunning : MonoBehaviour
     public bool useGravity;
     public float gravityCounterForce;
 
+    private float wallJumpNoDownTimer = 0f;
+    public float wallJumpNoDownDuration = 0.5f; // Duration in seconds
+
 
     // Start is called before the first frame update
     void Start()
@@ -83,7 +86,13 @@ public class WallRunning : MonoBehaviour
         if (pm.wallrunning)
             WallRunningMovement();
 
-
+        // Prevent downward movement after wall jump
+        if (wallJumpNoDownTimer > 0f)
+        {
+            wallJumpNoDownTimer -= Time.fixedDeltaTime;
+            if (rb.velocity.y < 0)
+                rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
+        }
     }
 
 
@@ -163,12 +172,13 @@ public class WallRunning : MonoBehaviour
         wallRunTimer = maxWallRunTime;
         rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z); // Reset the Y velocity to 0
 
+        // Debug message when starting wallrun or touching the wall
+        Debug.Log($"[WallRun] Player started wallrunning on wall. Wall normal: {(wallLeft ? leftWallhit.normal : rightWallhit.normal)}");
 
-        //apply camera effects
+        // Apply camera effects
         cam.DoFov(90f);
         if (wallLeft) cam.DoTilt(-5f);
         if (wallRight) cam.DoTilt(5f);
-
     }
 
     private void WallRunningMovement()
@@ -222,19 +232,28 @@ public class WallRunning : MonoBehaviour
         exitingWall = true;
         exitWallTimer = exitWallTime;
 
+        // Get the correct wall normal and flatten it to XZ plane
         Vector3 wallNormal = wallRight ? rightWallhit.normal : leftWallhit.normal;
+        wallNormal.y = 0;
+        wallNormal.Normalize();
 
-        // Reset Y velocity to ensure upward force is effective
-        rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
+        // Reset velocity for a clean jump
+        rb.velocity = Vector3.zero;
 
-        Vector3 forceToApply = transform.up * wallJumpUpForce + wallNormal * wallJumpSideForce;
+        // Apply upward and sideways force
+        float minUpForce = Mathf.Max(wallJumpUpForce, 7f); // 7f is a minimum upward force, tweak as needed
+        Vector3 forceToApply = transform.up * minUpForce + wallNormal * wallJumpSideForce;
         rb.AddForce(forceToApply, ForceMode.Impulse);
 
-        // Push player away from the wall and slightly upwards
+        // Optional: nudge away from wall and up
         float pushAwayDistance = 0.1f;
-        float pushUpDistance = 0.1f; // You can tweak this value
+        float pushUpDistance = 0.1f;
         rb.position += wallNormal * pushAwayDistance + Vector3.up * pushUpDistance;
+
+        // Start the "no down" timer
+        wallJumpNoDownTimer = wallJumpNoDownDuration;
 
         Debug.Log($"WallJump! Force: {forceToApply}");
     }
 }
+

@@ -164,39 +164,34 @@ public class Dashing : MonoBehaviour
 
     private void DestroyBreakableObject()
     {
-        // Check if the player is within bash distance
         if (!withinBashDistance) return;
 
-        // Cast a ray from the camera to the mouse position
+        // Use a SphereCast for a wider hit area
+        float sphereRadius = 1.5f; // Adjust this value for how "wide" the bash is
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
+        Vector3 origin = playerCam.position;
+        Vector3 direction = playerCam.forward;
 
-        // Check if the ray hits an object within the whatIsBreakable layer
-        if (Physics.Raycast(ray, out hit, Mathf.Infinity, whatIsBreakable))
+        if (Physics.SphereCast(origin, sphereRadius, direction, out hit, bashDistance, whatIsBreakable))
         {
-            // Get the object that was hit
             GameObject destroyedObject = hit.collider.gameObject;
-
-            // Disable the object
             destroyedObject.SetActive(false);
 
-            // Notify the Romperobjeto script to handle spawning the destroyed object
             Romperobjeto ro = destroyedObject.GetComponent<Romperobjeto>();
             if (ro != null)
-            {
                 ro.DestruirYRemplazar();
-            }
 
-            // Notify the StateChecker to handle re-enabling the wall
             StateChecker stateChecker = FindObjectOfType<StateChecker>();
             if (stateChecker != null)
-            {
                 stateChecker.RegisterDestroyedWall(destroyedObject, null);
-            }
 
-            // Call the custom function
+            var pilares = hit.collider.GetComponent<Pilares>();
+            if (pilares != null)
+                pilares.DestroyPillar();
+
             OnBreakableObjectDestroyed(destroyedObject);
-        }   
+        }
     }
 
     private void OnBreakableObjectDestroyed(GameObject destroyedObject)

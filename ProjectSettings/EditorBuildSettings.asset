@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/SCENE 0 MENU.unity
+    guid: 4e29dd1833f12c747a51c760b6fe1bf9
+  - enabled: 1
     path: Assets/Scenes/SCENE 1 CHURCH.unity
     guid: 3bc19ab7dea5d924ba7111edca65c301
   - enabled: 1
@@ -14,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/SCENE 3 POOL.unity
     guid: 6fe8893b63e21a04f8b809b9e7b2402c
+  - enabled: 1
+    path: Assets/Scenes/SCENE 4 POLILLA.unity
+    guid: fcb05d7e2810b054ba1639a7fb3e33d3
   m_configObjects: {}

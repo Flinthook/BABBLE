@@ -9,19 +9,21 @@ public class SoundManager : MonoBehaviour
 
     public List<AudioClip> soundClips = new List<AudioClip>();
     public List<string> soundClipInfo = new List<string>();
+    public List<Sprite> cassetteImages = new List<Sprite>();
 
     private AudioSource audioSource;
 
     //Singleton
-    void Awake(){
-
-        if(Instance != null && Instance != this){
-            
-            Destroy(this.gameObject);
-
-        }else{
+    void Awake()
+    {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
             Instance = this;
-            DontDestroyOnLoad(this.gameObject);
+            DontDestroyOnLoad(gameObject); // <-- This line keeps it alive between scenes
         }
     }
 
@@ -38,12 +40,13 @@ public class SoundManager : MonoBehaviour
     /**************************************/
 
     //método para añadir un sonido a la lista
-    public void AddCassetteSound(AudioClip clip, string info)
+    public void AddCassetteSound(AudioClip clip, string info, Sprite image)
     {
         if (clip != null)
         {
             soundClips.Add(clip);
             soundClipInfo.Add(info);
+            cassetteImages.Add(image); // Add this line
             Debug.Log($"Se ha añadido el sonido: {clip.name} con información: '{info}'");
         }
         else

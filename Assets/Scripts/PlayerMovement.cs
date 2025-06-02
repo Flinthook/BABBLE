@@ -83,11 +83,16 @@ public class PlayerMovement : MonoBehaviour
     public Transform checkpoint; // Assign in inspector or via script
     public float deathYThreshold = -20f; // Y position below which player dies
     public float maxFallTime = 2.5f; // Max time allowed to fall before dying
+    public LayerMask whatIsDeath; // Assign in Inspector
 
     private float fallTimer = 0f;
     private bool isDead = false;
 
     private bool playingFootstep = false;
+
+    private bool gravityBoostActive = false;
+    private float originalGravity;
+    public float boostedGravity = 50f; // Set this to your desired gravity
 
     void Start()
     {
@@ -165,6 +170,31 @@ public class PlayerMovement : MonoBehaviour
             warningActive = false;
         }
 
+        // --- Death Logic: Check for WhatIsDeath around the player ---
+        float checkRadius = playerHeight / 2f + 2f; // Slightly larger than player
+        int numRays = 8; // Number of directions to check
+        for (int i = 0; i < numRays; i++)
+        {
+            float angle = i * Mathf.PI * 2f / numRays;
+            Vector3 dir = new Vector3(Mathf.Cos(angle), 0, Mathf.Sin(angle));
+            if (Physics.Raycast(transform.position, dir, checkRadius, whatIsGround | whatIsDeath))
+            {
+                RaycastHit wallHit; // Renamed variable
+                if (Physics.Raycast(transform.position, dir, out wallHit, checkRadius, whatIsDeath))
+                {
+                    Die();
+                    break;
+                }
+            }
+        }
+
+        // Check for death zone below the player
+        if (Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit, playerHeight / 2 + 0.1f, whatIsDeath))
+        {
+            Die();
+            return;
+        }
+
         // Handle the overlay fade
         if (screenOverlay)
         {
@@ -197,6 +227,13 @@ public class PlayerMovement : MonoBehaviour
             // --- Stop footstep audio immediately if not moving ---
             if (footstepSource != null && footstepSource.isPlaying)
                 footstepSource.Stop();
+        }
+
+        // Reset gravity when grounded after boost
+        if (gravityBoostActive && grounded)
+        {
+            Physics.gravity = new Vector3(0, originalGravity, 0);
+            gravityBoostActive = false;
         }
     }
 
@@ -397,6 +434,16 @@ public class PlayerMovement : MonoBehaviour
         footstepSource.clip = clips[index];
         footstepSource.Play();
         playingFootstep = true;
+    }
+
+    public void IncreaseGravityUntilGrounded()
+    {
+        if (!gravityBoostActive)
+        {
+            gravityBoostActive = true;
+            originalGravity = Physics.gravity.y;
+            Physics.gravity = new Vector3(0, -boostedGravity, 0);
+        }
     }
 }
 
