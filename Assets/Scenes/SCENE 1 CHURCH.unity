@@ -132,6 +132,7 @@ GameObject:
   m_Component:
   - component: {fileID: 14421932}
   - component: {fileID: 14421931}
+  - component: {fileID: 14421933}
   m_Layer: 0
   m_Name: StateChecker
   m_TagString: Untagged
@@ -167,6 +168,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &14421933
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 14421930}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a16c1ee42d4648458324e9926300a8f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  videoPlayer: {fileID: 0}
+  player: {fileID: 2044491605}
 --- !u!1 &22691440
 GameObject:
   m_ObjectHideFlags: 0
@@ -1567,10 +1582,10 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 5036687291631502173, guid: 71402c58057824f44b599bc9e1c3c96a, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1968623743}
+      addedObject: {fileID: 1968623748}
     - targetCorrespondingSourceObject: {fileID: 5036687291631502173, guid: 71402c58057824f44b599bc9e1c3c96a, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1968623748}
+      addedObject: {fileID: 1968623749}
   m_SourcePrefab: {fileID: 100100000, guid: 71402c58057824f44b599bc9e1c3c96a, type: 3}
 --- !u!1 &351830968
 GameObject:
@@ -5888,9 +5903,17 @@ PrefabInstance:
     m_TransformParent: {fileID: 1586668962}
     m_Modifications:
     - target: {fileID: 3900108754347413305, guid: d9fa78e8c3c4f2b4b8f7f77ca8426cca, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+    - target: {fileID: 3900108754347413305, guid: d9fa78e8c3c4f2b4b8f7f77ca8426cca, type: 3}
       propertyPath: m_textAlignment
       value: 65535
       objectReference: {fileID: 0}
+    - target: {fileID: 3900108754347413305, guid: d9fa78e8c3c4f2b4b8f7f77ca8426cca, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
     - target: {fileID: 3900108754347413305, guid: d9fa78e8c3c4f2b4b8f7f77ca8426cca, type: 3}
       propertyPath: m_TextStyleHashCode
       value: -1183493901
@@ -5984,9 +6007,17 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6116449485086562217, guid: d9fa78e8c3c4f2b4b8f7f77ca8426cca, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+    - target: {fileID: 6116449485086562217, guid: d9fa78e8c3c4f2b4b8f7f77ca8426cca, type: 3}
       propertyPath: m_textAlignment
       value: 65535
       objectReference: {fileID: 0}
+    - target: {fileID: 6116449485086562217, guid: d9fa78e8c3c4f2b4b8f7f77ca8426cca, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
     - target: {fileID: 6116449485086562217, guid: d9fa78e8c3c4f2b4b8f7f77ca8426cca, type: 3}
       propertyPath: m_TextStyleHashCode
       value: -1183493901
@@ -7064,6 +7095,7 @@ RectTransform:
   - {fileID: 329580161}
   - {fileID: 460025385}
   - {fileID: 1374410651}
+  - {fileID: 2017727566}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -7511,7 +7543,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Event:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 171362289}
+        m_TargetAssemblyTypeName: DestruirJakub, Assembly-CSharp
+        m_MethodName: HideObstacle
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   NodeID: 0
   TMPFont: {fileID: 11400000, guid: acc7270ca91e4354fa6e6ebb760f796a, type: 2}
   Icon: {fileID: 21300000, guid: eb6e2031055c9ee47b5a0f0fd78e7433, type: 3}
@@ -9015,7 +9059,7 @@ Transform:
   m_GameObject: {fileID: 1676311131}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -44.11, y: -0.32, z: 49.37}
+  m_LocalPosition: {x: -45.65, y: -0.32, z: 49.37}
   m_LocalScale: {x: 8.18, y: 3.95, z: 8.18}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -9536,105 +9580,105 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CurrentIDCounter: 85
-  json: "{\"Options\":[{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":4}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":193.333221,\"yPos\":-802.9993},\"ID\":3,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"\xBFQuien
-    eres?\",\"parentUIDs\":[0],\"SpeechUID\":-1},{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":8}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":199.33371,\"yPos\":-568.9987},\"ID\":5,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"Ah.\",\"parentUIDs\":[4],\"SpeechUID\":-1},{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":10}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":195.333588,\"yPos\":-327.664734},\"ID\":9,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"...\",\"parentUIDs\":[8],\"SpeechUID\":-1},{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":14}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":-38.66635,\"yPos\":-100.331284},\"ID\":11,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"Nada.\",\"parentUIDs\":[10],\"SpeechUID\":-1},{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":19}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":198.666962,\"yPos\":-108.997543},\"ID\":12,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"Vengo
-    de hablar con Jezev\xE9.\",\"parentUIDs\":[10,17],\"SpeechUID\":-1},{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":21}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":431.999847,\"yPos\":-72.3315},\"ID\":13,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"Busco
-    venganza.\",\"parentUIDs\":[10,17],\"SpeechUID\":-1},{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":18}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":-240.667511,\"yPos\":113.669685},\"ID\":15,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"Si.\",\"parentUIDs\":[14],\"SpeechUID\":-1},{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":17}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":18.0003357,\"yPos\":114.336189},\"ID\":16,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"No.\",\"parentUIDs\":[14],\"SpeechUID\":-1},{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":18}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":143.333221,\"yPos\":363.670166},\"ID\":20,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"Solo
-    una vez cada cierto tiempo.\",\"parentUIDs\":[19],\"SpeechUID\":-1},{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":27}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":569.999634,\"yPos\":283.668884},\"ID\":23,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"Bien.
-    Es lo que pretendo. Ser\xE9 la \xFAltima luz y la primera sombra.\",\"parentUIDs\":[21],\"SpeechUID\":-1},{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":18}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":772.6666,\"yPos\":216.335892},\"ID\":24,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"Bien.\",\"parentUIDs\":[21],\"SpeechUID\":-1},{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":26}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":-139.332947,\"yPos\":491.670471},\"ID\":25,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"Es
-    el Bast\xF3n de Yekutiel.  Con \xE9l puedo comprender todas las lenguas.\",\"parentUIDs\":[18],\"SpeechUID\":-1},{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":29}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":673.3336,\"yPos\":351.670166},\"ID\":28,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"\xBFQu\xE9?\",\"parentUIDs\":[27],\"SpeechUID\":-1},{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":18}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":456.666473,\"yPos\":439.6698},\"ID\":30,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"...\",\"parentUIDs\":[29],\"SpeechUID\":-1},{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":32}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":454.6666,\"yPos\":517.003357},\"ID\":31,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"\xBFMicroqu\xE9?\",\"parentUIDs\":[26],\"SpeechUID\":-1},{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":35}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":453.999969,\"yPos\":616.3372},\"ID\":33,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"\xBFPero
-    tu qui\xE9n diablos eres?\",\"parentUIDs\":[32],\"SpeechUID\":-1},{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":38}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":679.3336,\"yPos\":628.3376},\"ID\":34,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"Pretendo
-    derribar la Torre.\",\"parentUIDs\":[32,44],\"SpeechUID\":-1},{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":37}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":233.333344,\"yPos\":713.670837},\"ID\":36,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"No
-    claro pero... \xBFqu\xE9 haces aqu\xCD?\",\"parentUIDs\":[35],\"SpeechUID\":-1},{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":40}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":458.6666,\"yPos\":795.6701},\"ID\":39,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"Qu\xE9
-    misterioso...\",\"parentUIDs\":[37],\"SpeechUID\":-1},{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":42}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":678.6669,\"yPos\":796.336853},\"ID\":41,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"La
-    humanidad debe ser liberada. \xBFTe parece mal?\",\"parentUIDs\":[38],\"SpeechUID\":-1},{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":44}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":235.999969,\"yPos\":897.002747},\"ID\":43,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"\xBFUn
-    qu\xE9?\",\"parentUIDs\":[40],\"SpeechUID\":-1},{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":47}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":678.0001,\"yPos\":966.3361},\"ID\":45,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"Ah...
-    uh... \xBFgracias?\",\"parentUIDs\":[42,52],\"SpeechUID\":-1},{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":48}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":918.000244,\"yPos\":690.336731},\"ID\":46,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"Bien.\",\"parentUIDs\":[42],\"SpeechUID\":-1},{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":53}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":1164.66565,\"yPos\":680.3365},\"ID\":49,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"\xBFPor?\",\"parentUIDs\":[48],\"SpeechUID\":-1},{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":52}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":903.9994,\"yPos\":869.0041},\"ID\":50,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"*Sonr\xEDe*\",\"parentUIDs\":[48,55],\"SpeechUID\":-1},{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":55}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":1233.99768,\"yPos\":901.0013},\"ID\":54,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"Ah...
-    pero... yo...\",\"parentUIDs\":[53],\"SpeechUID\":-1},{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":57}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":685.999634,\"yPos\":1152.335},\"ID\":56,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"\xBFPara
-    m\xED?\",\"parentUIDs\":[47],\"SpeechUID\":-1},{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":59}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":937.999756,\"yPos\":1148.33472},\"ID\":58,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"\xBFPero...?\",\"parentUIDs\":[57],\"SpeechUID\":-1},{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":61}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":681.9999,\"yPos\":1346.33472},\"ID\":60,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"\xBFY
-    qu\xE9 propones?\",\"parentUIDs\":[59],\"SpeechUID\":-1},{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":63}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":1137.9989,\"yPos\":1357.6687},\"ID\":62,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"\xBFEsto
-    qu\xE9 es?\",\"parentUIDs\":[61],\"SpeechUID\":-1},{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":65}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":913.3335,\"yPos\":1457.669},\"ID\":64,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"\xBF\xBFHuh??\",\"parentUIDs\":[63],\"SpeechUID\":-1},{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":67}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":689.999634,\"yPos\":1538.33423},\"ID\":66,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"\xBF...?\",\"parentUIDs\":[65],\"SpeechUID\":-1},{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":69}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":1145.3324,\"yPos\":1535.66724},\"ID\":68,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"\xA1Oh!\",\"parentUIDs\":[67],\"SpeechUID\":-1},{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":71}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":919.999756,\"yPos\":1636.33057},\"ID\":70,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"Vaya...
-    \xBFgracias?\",\"parentUIDs\":[69],\"SpeechUID\":-1},{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":75}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":689.999634,\"yPos\":1737.66235},\"ID\":72,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"No
-    tengo dinero...\",\"parentUIDs\":[71],\"SpeechUID\":-1},{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":74}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":905.332153,\"yPos\":1736.32935},\"ID\":73,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"No
-    tengo un duro t\xEDo...\",\"parentUIDs\":[71],\"SpeechUID\":-1},{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":80}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":690.6664,\"yPos\":1918.32715},\"ID\":76,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"Lo
-    juro... (verdad)\",\"parentUIDs\":[75],\"SpeechUID\":-1},{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":80}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":689.999634,\"yPos\":1988.99316},\"ID\":78,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"Lo
-    juro... (mentira)\",\"parentUIDs\":[75],\"SpeechUID\":-1},{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":80}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":916.6665,\"yPos\":1890.99316},\"ID\":79,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"\xBFEntonces?\",\"parentUIDs\":[74],\"SpeechUID\":-1},{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":82}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":1156.66589,\"yPos\":1791.6626},\"ID\":81,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"Ah...
-    vale.\",\"parentUIDs\":[80],\"SpeechUID\":-1},{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":6}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":1166.66541,\"yPos\":1994.32861},\"ID\":83,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"Gracias...\",\"parentUIDs\":[82],\"SpeechUID\":-1},{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":6}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":1387.99963,\"yPos\":1999.66187},\"ID\":84,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"\xA1Radical!\",\"parentUIDs\":[82],\"SpeechUID\":-1}],\"Parameters\":[],\"SpeechNodes\":[{\"Connections\":[{\"__type\":\"EditableOptionConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":3}],\"EditorInfo\":{\"isRoot\":true,\"xPos\":192.333344,\"yPos\":-925.3337},\"ID\":0,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"Ey.\",\"parentUIDs\":[],\"AdvanceDialogueAutomatically\":false,\"AudioGUID\":null,\"AutoAdvanceShouldDisplayOption\":false,\"IconGUID\":null,\"Name\":\"???\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0.659},{\"Connections\":[{\"__type\":\"EditableOptionConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":5}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":186.000092,\"yPos\":-710.665},\"ID\":4,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"MC
+  json: "{\"Options\":[{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":4}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":273.3333,\"yPos\":385.666534},\"ID\":3,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"\xBFQuien
+    eres?\",\"parentUIDs\":[0],\"SpeechUID\":-1},{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":8}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":279.33374,\"yPos\":619.667236},\"ID\":5,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"Ah.\",\"parentUIDs\":[4],\"SpeechUID\":-1},{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":10}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":275.3336,\"yPos\":861.0033},\"ID\":9,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"...\",\"parentUIDs\":[8],\"SpeechUID\":-1},{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":14}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":41.3335571,\"yPos\":1088.33691},\"ID\":11,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"Nada.\",\"parentUIDs\":[10],\"SpeechUID\":-1},{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":19}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":278.666962,\"yPos\":1079.6709},\"ID\":12,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"Vengo
+    de hablar con Jezev\xE9.\",\"parentUIDs\":[10,17],\"SpeechUID\":-1},{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":21}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":512,\"yPos\":1116.33667},\"ID\":13,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"Busco
+    venganza.\",\"parentUIDs\":[10,17],\"SpeechUID\":-1},{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":18}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":-160.667175,\"yPos\":1302.33765},\"ID\":15,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"Si.\",\"parentUIDs\":[14],\"SpeechUID\":-1},{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":17}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":98.0002441,\"yPos\":1303.00415},\"ID\":16,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"No.\",\"parentUIDs\":[14],\"SpeechUID\":-1},{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":18}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":223.333221,\"yPos\":1552.33789},\"ID\":20,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"Solo
+    una vez cada cierto tiempo.\",\"parentUIDs\":[19],\"SpeechUID\":-1},{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":27}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":649.999939,\"yPos\":1472.33618},\"ID\":23,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"Bien.
+    Es lo que pretendo. Ser\xE9 la \xFAltima luz y la primera sombra.\",\"parentUIDs\":[21],\"SpeechUID\":-1},{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":18}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":852.6667,\"yPos\":1405.00366},\"ID\":24,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"Bien.\",\"parentUIDs\":[21],\"SpeechUID\":-1},{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":26}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":-59.3329163,\"yPos\":1680.33838},\"ID\":25,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"Es
+    el Bast\xF3n de Yekutiel.  Con \xE9l puedo comprender todas las lenguas.\",\"parentUIDs\":[18],\"SpeechUID\":-1},{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":29}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":753.3338,\"yPos\":1540.33789},\"ID\":28,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"\xBFQu\xE9?\",\"parentUIDs\":[27],\"SpeechUID\":-1},{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":18}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":536.6666,\"yPos\":1628.33789},\"ID\":30,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"...\",\"parentUIDs\":[29],\"SpeechUID\":-1},{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":32}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":534.666748,\"yPos\":1705.6709},\"ID\":31,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"\xBFMicroqu\xE9?\",\"parentUIDs\":[26],\"SpeechUID\":-1},{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":35}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":534.0001,\"yPos\":1805.00464},\"ID\":33,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"\xBFPero
+    tu qui\xE9n diablos eres?\",\"parentUIDs\":[32],\"SpeechUID\":-1},{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":38}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":759.3338,\"yPos\":1817.00488},\"ID\":34,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"Pretendo
+    derribar la Torre.\",\"parentUIDs\":[32,44],\"SpeechUID\":-1},{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":37}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":313.333344,\"yPos\":1902.33813},\"ID\":36,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"No
+    claro pero... \xBFqu\xE9 haces aqu\xCD?\",\"parentUIDs\":[35],\"SpeechUID\":-1},{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":40}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":538.666748,\"yPos\":1984.33667},\"ID\":39,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"Qu\xE9
+    misterioso...\",\"parentUIDs\":[37],\"SpeechUID\":-1},{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":42}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":758.667053,\"yPos\":1985.00342},\"ID\":41,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"La
+    humanidad debe ser liberada. \xBFTe parece mal?\",\"parentUIDs\":[38],\"SpeechUID\":-1},{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":44}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":316,\"yPos\":2085.67},\"ID\":43,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"\xBFUn
+    qu\xE9?\",\"parentUIDs\":[40],\"SpeechUID\":-1},{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":47}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":758.0003,\"yPos\":2155.003},\"ID\":45,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"Ah...
+    uh... \xBFgracias?\",\"parentUIDs\":[42,52],\"SpeechUID\":-1},{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":48}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":998.000244,\"yPos\":1879.00415},\"ID\":46,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"Bien.\",\"parentUIDs\":[42],\"SpeechUID\":-1},{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":53}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":1244.66565,\"yPos\":1869.00415},\"ID\":49,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"\xBFPor?\",\"parentUIDs\":[48],\"SpeechUID\":-1},{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":52}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":983.999451,\"yPos\":2057.67041},\"ID\":50,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"*Sonr\xEDe*\",\"parentUIDs\":[48,55],\"SpeechUID\":-1},{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":55}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":1313.99792,\"yPos\":2089.66846},\"ID\":54,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"Ah...
+    pero... yo...\",\"parentUIDs\":[53],\"SpeechUID\":-1},{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":57}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":727.333069,\"yPos\":2337.66846},\"ID\":56,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"\xBFPara
+    m\xED?\",\"parentUIDs\":[47],\"SpeechUID\":-1},{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":59}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":1018,\"yPos\":2337.00146},\"ID\":58,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"\xBFPero...?\",\"parentUIDs\":[57],\"SpeechUID\":-1},{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":61}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":762.000061,\"yPos\":2535.003},\"ID\":60,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"\xBFY
+    qu\xE9 propones?\",\"parentUIDs\":[59],\"SpeechUID\":-1},{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":63}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":1217.99866,\"yPos\":2546.33643},\"ID\":62,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"\xBFEsto
+    qu\xE9 es?\",\"parentUIDs\":[61],\"SpeechUID\":-1},{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":65}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":993.333435,\"yPos\":2646.336},\"ID\":64,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"\xBF\xBFHuh??\",\"parentUIDs\":[63],\"SpeechUID\":-1},{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":67}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":769.9998,\"yPos\":2727.00146},\"ID\":66,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"\xBF...?\",\"parentUIDs\":[65],\"SpeechUID\":-1},{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":69}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":1225.33264,\"yPos\":2724.334},\"ID\":68,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"\xA1Oh!\",\"parentUIDs\":[67],\"SpeechUID\":-1},{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":71}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":1018.6665,\"yPos\":2844.99756},\"ID\":70,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"Vaya...
+    \xBFgracias?\",\"parentUIDs\":[69],\"SpeechUID\":-1},{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":75}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":769.9998,\"yPos\":2926.33},\"ID\":72,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"No
+    tengo dinero...\",\"parentUIDs\":[71],\"SpeechUID\":-1},{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":74}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":985.3322,\"yPos\":2924.997},\"ID\":73,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"No
+    tengo un duro t\xEDo...\",\"parentUIDs\":[71],\"SpeechUID\":-1},{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":80}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":770.666565,\"yPos\":3106.99414},\"ID\":76,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"Lo
+    juro... (verdad)\",\"parentUIDs\":[75],\"SpeechUID\":-1},{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":80}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":769.9998,\"yPos\":3177.66016},\"ID\":78,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"Lo
+    juro... (mentira)\",\"parentUIDs\":[75],\"SpeechUID\":-1},{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":80}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":996.6665,\"yPos\":3079.66016},\"ID\":79,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"\xBFEntonces?\",\"parentUIDs\":[74],\"SpeechUID\":-1},{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":82}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":1236.66614,\"yPos\":2980.33},\"ID\":81,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"Ah...
+    vale.\",\"parentUIDs\":[80],\"SpeechUID\":-1},{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":6}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":1246.66565,\"yPos\":3182.99561},\"ID\":83,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"Gracias...\",\"parentUIDs\":[82],\"SpeechUID\":-1},{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":6}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":1467.99939,\"yPos\":3188.329},\"ID\":84,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"\xA1Radical!\",\"parentUIDs\":[82],\"SpeechUID\":-1}],\"Parameters\":[],\"SpeechNodes\":[{\"Connections\":[{\"__type\":\"EditableOptionConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":3}],\"EditorInfo\":{\"isRoot\":true,\"xPos\":272.333435,\"yPos\":263.332764},\"ID\":0,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"Ey.\",\"parentUIDs\":[],\"AdvanceDialogueAutomatically\":false,\"AudioGUID\":null,\"AutoAdvanceShouldDisplayOption\":false,\"IconGUID\":null,\"Name\":\"???\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0.659},{\"Connections\":[{\"__type\":\"EditableOptionConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":5}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":266.000183,\"yPos\":478.000671},\"ID\":4,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"MC
     Jakub.\",\"parentUIDs\":[3],\"AdvanceDialogueAutomatically\":false,\"AudioGUID\":null,\"AutoAdvanceShouldDisplayOption\":false,\"IconGUID\":null,\"Name\":\"MC
-    Jakub\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0.618},{\"Connections\":[],\"EditorInfo\":{\"isRoot\":false,\"xPos\":1306.00012,\"yPos\":2135.99951},\"ID\":6,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"Radical...\",\"parentUIDs\":[83,84],\"AdvanceDialogueAutomatically\":false,\"AudioGUID\":null,\"AutoAdvanceShouldDisplayOption\":false,\"IconGUID\":null,\"Name\":\"MC
-    Jakub\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0.771},{\"Connections\":[{\"__type\":\"EditableOptionConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":9}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":192.6666,\"yPos\":-477.997742},\"ID\":8,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"...\",\"parentUIDs\":[5],\"AdvanceDialogueAutomatically\":false,\"AudioGUID\":null,\"AutoAdvanceShouldDisplayOption\":false,\"IconGUID\":null,\"Name\":\"MC
-    Jakub\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0.6},{\"Connections\":[{\"__type\":\"EditableOptionConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":12},{\"__type\":\"EditableOptionConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":13},{\"__type\":\"EditableOptionConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":11}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":201.33371,\"yPos\":-238.6654},\"ID\":10,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"Bueno
+    Jakub\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0.618},{\"Connections\":[],\"EditorInfo\":{\"isRoot\":false,\"xPos\":1358.66711,\"yPos\":3327.3335},\"ID\":6,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"Radical...\",\"parentUIDs\":[83,84],\"AdvanceDialogueAutomatically\":false,\"AudioGUID\":null,\"AutoAdvanceShouldDisplayOption\":false,\"IconGUID\":null,\"Name\":\"MC
+    Jakub\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0.771},{\"Connections\":[{\"__type\":\"EditableOptionConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":9}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":272.6667,\"yPos\":710.6687},\"ID\":8,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"...\",\"parentUIDs\":[5],\"AdvanceDialogueAutomatically\":false,\"AudioGUID\":null,\"AutoAdvanceShouldDisplayOption\":false,\"IconGUID\":null,\"Name\":\"MC
+    Jakub\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0.6},{\"Connections\":[{\"__type\":\"EditableOptionConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":12},{\"__type\":\"EditableOptionConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":13},{\"__type\":\"EditableOptionConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":11}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":281.33374,\"yPos\":950.002563},\"ID\":10,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"Bueno
     y... \xBFqu\xE9 haces aqu\xED?\",\"parentUIDs\":[9],\"AdvanceDialogueAutomatically\":false,\"AudioGUID\":null,\"AutoAdvanceShouldDisplayOption\":false,\"IconGUID\":null,\"Name\":\"MC
-    Jakub\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0.667},{\"Connections\":[{\"__type\":\"EditableOptionConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":15},{\"__type\":\"EditableOptionConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":16}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":-28.666626,\"yPos\":-14.6641388},\"ID\":14,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"Ah...
+    Jakub\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0.667},{\"Connections\":[{\"__type\":\"EditableOptionConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":15},{\"__type\":\"EditableOptionConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":16}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":51.333313,\"yPos\":1174.00391},\"ID\":14,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"Ah...
     \xBFseguro?\",\"parentUIDs\":[11],\"AdvanceDialogueAutomatically\":false,\"AudioGUID\":null,\"AutoAdvanceShouldDisplayOption\":false,\"IconGUID\":null,\"Name\":\"MC
-    Jakub\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0.629},{\"Connections\":[{\"__type\":\"EditableOptionConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":12},{\"__type\":\"EditableOptionConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":13}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":58.66696,\"yPos\":253.336075},\"ID\":17,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"\xBFEntonces?\",\"parentUIDs\":[16],\"AdvanceDialogueAutomatically\":false,\"AudioGUID\":null,\"AutoAdvanceShouldDisplayOption\":false,\"IconGUID\":null,\"Name\":\"MC
-    Jakub\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0.682},{\"Connections\":[{\"__type\":\"EditableOptionConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":25}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":-244.001,\"yPos\":356.003418},\"ID\":18,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"\xBFY
+    Jakub\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0.629},{\"Connections\":[{\"__type\":\"EditableOptionConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":12},{\"__type\":\"EditableOptionConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":13}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":138.66687,\"yPos\":1442.00391},\"ID\":17,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"\xBFEntonces?\",\"parentUIDs\":[16],\"AdvanceDialogueAutomatically\":false,\"AudioGUID\":null,\"AutoAdvanceShouldDisplayOption\":false,\"IconGUID\":null,\"Name\":\"MC
+    Jakub\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0.682},{\"Connections\":[{\"__type\":\"EditableOptionConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":25}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":-164.000671,\"yPos\":1544.67114},\"ID\":18,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"\xBFY
     ese bast\xF3n?\",\"parentUIDs\":[15,20,24,30],\"AdvanceDialogueAutomatically\":false,\"AudioGUID\":null,\"AutoAdvanceShouldDisplayOption\":false,\"IconGUID\":null,\"Name\":\"MC
-    Jakub\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0.73},{\"Connections\":[{\"__type\":\"EditableOptionConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":20}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":359.9996,\"yPos\":254.669815},\"ID\":19,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"Woah,
+    Jakub\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0.73},{\"Connections\":[{\"__type\":\"EditableOptionConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":20}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":439.999756,\"yPos\":1443.33765},\"ID\":19,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"Woah,
     colega. Qu\xE9 ominoso. No sab\xEDa que se pod\xEDa hablar con \xE9l.\",\"parentUIDs\":[12],\"AdvanceDialogueAutomatically\":false,\"AudioGUID\":null,\"AutoAdvanceShouldDisplayOption\":false,\"IconGUID\":null,\"Name\":\"MC
-    Jakub\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0.585},{\"Connections\":[{\"__type\":\"EditableOptionConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":23},{\"__type\":\"EditableOptionConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":24}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":632.0001,\"yPos\":7.336014},\"ID\":21,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"Woah
+    Jakub\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0.585},{\"Connections\":[{\"__type\":\"EditableOptionConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":23},{\"__type\":\"EditableOptionConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":24}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":712.0003,\"yPos\":1196.00439},\"ID\":21,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"Woah
     colega, das un poco de miedo.\",\"parentUIDs\":[13],\"AdvanceDialogueAutomatically\":false,\"AudioGUID\":null,\"AutoAdvanceShouldDisplayOption\":false,\"IconGUID\":null,\"Name\":\"MC
-    Jakub\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0.644},{\"Connections\":[{\"__type\":\"EditableOptionConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":31}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":161.33316,\"yPos\":517.3366},\"ID\":26,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"Vaya,
+    Jakub\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0.644},{\"Connections\":[{\"__type\":\"EditableOptionConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":31}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":241.333252,\"yPos\":1706.00415},\"ID\":26,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"Vaya,
     ya no hacen artefactos as\xED. Ahora los milagros son mucho m\xE1s aburridos
     o van acompa\xF1ados de microtransacciones.\",\"parentUIDs\":[25],\"AdvanceDialogueAutomatically\":false,\"AudioGUID\":null,\"AutoAdvanceShouldDisplayOption\":false,\"IconGUID\":null,\"Name\":\"MC
-    Jakub\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0.637},{\"Connections\":[{\"__type\":\"EditableOptionConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":28}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":458.666718,\"yPos\":352.003418},\"ID\":27,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"Pfffft...\",\"parentUIDs\":[23],\"AdvanceDialogueAutomatically\":false,\"AudioGUID\":null,\"AutoAdvanceShouldDisplayOption\":false,\"IconGUID\":null,\"Name\":\"MC
-    Jakub\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0.607},{\"Connections\":[{\"__type\":\"EditableOptionConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":30}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":679.3334,\"yPos\":412.003},\"ID\":29,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"Nada,
+    Jakub\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0.637},{\"Connections\":[{\"__type\":\"EditableOptionConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":28}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":538.666931,\"yPos\":1540.67114},\"ID\":27,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"Pfffft...\",\"parentUIDs\":[23],\"AdvanceDialogueAutomatically\":false,\"AudioGUID\":null,\"AutoAdvanceShouldDisplayOption\":false,\"IconGUID\":null,\"Name\":\"MC
+    Jakub\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0.607},{\"Connections\":[{\"__type\":\"EditableOptionConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":30}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":759.333557,\"yPos\":1600.6709},\"ID\":29,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"Nada,
     que eres un poco flipado. Pero est\xE1 bien, la iniciativa es importante.\",\"parentUIDs\":[28],\"AdvanceDialogueAutomatically\":false,\"AudioGUID\":null,\"AutoAdvanceShouldDisplayOption\":false,\"IconGUID\":null,\"Name\":\"MC
-    Jakub\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0.678},{\"Connections\":[{\"__type\":\"EditableOptionConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":33},{\"__type\":\"EditableOptionConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":34}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":683.3334,\"yPos\":516.0036},\"ID\":32,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"Microtransacciones.
+    Jakub\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0.678},{\"Connections\":[{\"__type\":\"EditableOptionConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":33},{\"__type\":\"EditableOptionConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":34}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":763.333557,\"yPos\":1704.67114},\"ID\":32,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"Microtransacciones.
     Pero da igual, no es relevante. \xBFCu\xE1l es tu plan?\",\"parentUIDs\":[31],\"AdvanceDialogueAutomatically\":false,\"AudioGUID\":null,\"AutoAdvanceShouldDisplayOption\":false,\"IconGUID\":null,\"Name\":\"MC
-    Jakub\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0.629},{\"Connections\":[{\"__type\":\"EditableOptionConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":36}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":458.6666,\"yPos\":690.6702},\"ID\":35,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"MC
+    Jakub\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0.629},{\"Connections\":[{\"__type\":\"EditableOptionConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":36}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":538.666748,\"yPos\":1879.33765},\"ID\":35,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"MC
     Jakub. Ya te lo he dicho. \",\"parentUIDs\":[33],\"AdvanceDialogueAutomatically\":false,\"AudioGUID\":null,\"AutoAdvanceShouldDisplayOption\":false,\"IconGUID\":null,\"Name\":\"MC
-    Jakub\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0.678},{\"Connections\":[{\"__type\":\"EditableOptionConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":39}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":233.333344,\"yPos\":796.003357},\"ID\":37,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"\xA1Ah!
+    Jakub\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0.678},{\"Connections\":[{\"__type\":\"EditableOptionConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":39}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":313.333344,\"yPos\":1984.66992},\"ID\":37,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"\xA1Ah!
     J\xE1. Estoy d\xE1ndome una vuelta... ya sabes. Echando un vistazo por aqu\xED,
     otro por all\xE1. Esparciendo buenas vibras.\",\"parentUIDs\":[36],\"AdvanceDialogueAutomatically\":false,\"AudioGUID\":null,\"AutoAdvanceShouldDisplayOption\":false,\"IconGUID\":null,\"Name\":\"MC
-    Jakub\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0.592},{\"Connections\":[{\"__type\":\"EditableOptionConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":41}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":685.9999,\"yPos\":694.0037},\"ID\":38,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"\xA1Colega!
+    Jakub\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0.592},{\"Connections\":[{\"__type\":\"EditableOptionConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":41}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":766.000061,\"yPos\":1882.6709},\"ID\":38,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"\xA1Colega!
     No te andas con chiquitas, eh. \",\"parentUIDs\":[34],\"AdvanceDialogueAutomatically\":false,\"AudioGUID\":null,\"AutoAdvanceShouldDisplayOption\":false,\"IconGUID\":null,\"Name\":\"MC
-    Jakub\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0.588},{\"Connections\":[{\"__type\":\"EditableOptionConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":43}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":465.3331,\"yPos\":891.336243},\"ID\":40,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"\xA1Ni
+    Jakub\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0.588},{\"Connections\":[{\"__type\":\"EditableOptionConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":43}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":545.333252,\"yPos\":2080.00342},\"ID\":40,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"\xA1Ni
     mucho menos! Solo me gusta dar vueltas. Soy como un \\\"hippie n\xF3mada\\\"
     o algo as\xED.\",\"parentUIDs\":[39],\"AdvanceDialogueAutomatically\":false,\"AudioGUID\":null,\"AutoAdvanceShouldDisplayOption\":false,\"IconGUID\":null,\"Name\":\"MC
-    Jakub\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0.563},{\"Connections\":[{\"__type\":\"EditableOptionConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":45},{\"__type\":\"EditableOptionConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":46}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":678.6669,\"yPos\":854.0042},\"ID\":42,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"No,
+    Jakub\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0.563},{\"Connections\":[{\"__type\":\"EditableOptionConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":45},{\"__type\":\"EditableOptionConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":46}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":758.667053,\"yPos\":2042.67114},\"ID\":42,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"No,
     no. Estoy m\xE1s que de acuerdo, aunque temo que tirar la Torre no sea la mejor
     idea. Tu a lo tuyo, eh, no pretendo meterme en medio.\",\"parentUIDs\":[41],\"AdvanceDialogueAutomatically\":false,\"AudioGUID\":null,\"AutoAdvanceShouldDisplayOption\":false,\"IconGUID\":null,\"Name\":\"MC
-    Jakub\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0.711},{\"Connections\":[{\"__type\":\"EditableOptionConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":34}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":242.666351,\"yPos\":1005.33636},\"ID\":44,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"\xA1Da
+    Jakub\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0.711},{\"Connections\":[{\"__type\":\"EditableOptionConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":34}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":322.6665,\"yPos\":2194.00342},\"ID\":44,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"\xA1Da
     igual! Hermano...  \xBFqu\xE9 vas a hacer con eso?\",\"parentUIDs\":[43],\"AdvanceDialogueAutomatically\":false,\"AudioGUID\":null,\"AutoAdvanceShouldDisplayOption\":false,\"IconGUID\":null,\"Name\":\"MC
-    Jakub\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0.562},{\"Connections\":[{\"__type\":\"EditableOptionConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":56}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":678.0001,\"yPos\":1033.33655},\"ID\":47,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"\xA1No
+    Jakub\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0.562},{\"Connections\":[{\"__type\":\"EditableOptionConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":56}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":758.0003,\"yPos\":2222.003},\"ID\":47,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"\xA1No
     problemo! De hecho... creo que tengo algo para t\xED.\",\"parentUIDs\":[45],\"AdvanceDialogueAutomatically\":false,\"AudioGUID\":null,\"AutoAdvanceShouldDisplayOption\":false,\"IconGUID\":null,\"Name\":\"MC
-    Jakub\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0.67},{\"Connections\":[{\"__type\":\"EditableOptionConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":49},{\"__type\":\"EditableOptionConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":50}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":918.000244,\"yPos\":769.3371},\"ID\":48,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"Bueno
+    Jakub\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0.67},{\"Connections\":[{\"__type\":\"EditableOptionConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":49},{\"__type\":\"EditableOptionConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":50}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":998.000244,\"yPos\":1958.00415},\"ID\":48,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"Bueno
     t\xEDo tampoco tienes que ser as\xED. Sonr\xEDe un poquito o algo.\",\"parentUIDs\":[46],\"AdvanceDialogueAutomatically\":false,\"AudioGUID\":null,\"AutoAdvanceShouldDisplayOption\":false,\"IconGUID\":null,\"Name\":\"MC
-    Jakub\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0.551},{\"Connections\":[{\"__type\":\"EditableOptionConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":45}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":907.332764,\"yPos\":933.335632},\"ID\":52,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"\xA1Aj\xE1!
+    Jakub\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0.551},{\"Connections\":[{\"__type\":\"EditableOptionConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":45}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":987.332947,\"yPos\":2122.003},\"ID\":52,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"\xA1Aj\xE1!
     Mucho mejor, m\xE1s guapete. As\xED inspiras confianza.\",\"parentUIDs\":[50],\"AdvanceDialogueAutomatically\":false,\"AudioGUID\":null,\"AutoAdvanceShouldDisplayOption\":false,\"IconGUID\":null,\"Name\":\"MC
-    Jakub\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0.607},{\"Connections\":[{\"__type\":\"EditableOptionConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":54}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":1169.99866,\"yPos\":757.3365},\"ID\":53,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"Macho
+    Jakub\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0.607},{\"Connections\":[{\"__type\":\"EditableOptionConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":54}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":1249.99866,\"yPos\":1946.00366},\"ID\":53,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"Macho
     pues porque hay un muro invisible casualmente colocado detr\xE1s de m\xED que
     no va a desaparecer hasta que yo lo decida y si te portas como un capullito no
     me va a apetecer.\",\"parentUIDs\":[49],\"AdvanceDialogueAutomatically\":false,\"AudioGUID\":null,\"AutoAdvanceShouldDisplayOption\":false,\"IconGUID\":null,\"Name\":\"MC
-    Jakub\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0.711},{\"Connections\":[{\"__type\":\"EditableOptionConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":50}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":1175.99817,\"yPos\":982.668152},\"ID\":55,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"Ni
+    Jakub\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0.711},{\"Connections\":[{\"__type\":\"EditableOptionConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":50}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":1255.99792,\"yPos\":2171.335},\"ID\":55,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"Ni
     y\xF3 ni y\xFA. Hay que ser m\xE1s agradable, que ya hay mucha miseria en el
     mundo. Una sonrisa o nos quedamos aqu\xED encerrados comiendo pipas.\",\"parentUIDs\":[54],\"AdvanceDialogueAutomatically\":false,\"AudioGUID\":null,\"AutoAdvanceShouldDisplayOption\":false,\"IconGUID\":null,\"Name\":\"MC
-    Jakub\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0.633},{\"Connections\":[{\"__type\":\"EditableOptionConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":58}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":683.9999,\"yPos\":1221.33374},\"ID\":57,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"\xA1Claro!
+    Jakub\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0.633},{\"Connections\":[{\"__type\":\"EditableOptionConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":58}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":714.000061,\"yPos\":2446.00049},\"ID\":57,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"\xA1Claro!
     Mira... tu plan suena bien, tirar la Torre y tal... pero...\",\"parentUIDs\":[56],\"AdvanceDialogueAutomatically\":false,\"AudioGUID\":null,\"AutoAdvanceShouldDisplayOption\":false,\"IconGUID\":null,\"Name\":\"MC
-    Jakub\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0.663},{\"Connections\":[{\"__type\":\"EditableOptionConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":60}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":918.6665,\"yPos\":1243.33325},\"ID\":59,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"No
+    Jakub\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0.663},{\"Connections\":[{\"__type\":\"EditableOptionConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":60}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":998.6665,\"yPos\":2432},\"ID\":59,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"No
     puedes sembrar el caos... con este ominoso silencio de fondo... no tiene ninguna
     gracia. Cero estilo, colega. Cero patatero.\",\"parentUIDs\":[58],\"AdvanceDialogueAutomatically\":false,\"AudioGUID\":null,\"AutoAdvanceShouldDisplayOption\":false,\"IconGUID\":null,\"Name\":\"MC
-    Jakub\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0.6},{\"Connections\":[{\"__type\":\"EditableOptionConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":62}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":911.999756,\"yPos\":1354.00244},\"ID\":61,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"J\xE9...
+    Jakub\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0.6},{\"Connections\":[{\"__type\":\"EditableOptionConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":62}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":991.999939,\"yPos\":2542.67},\"ID\":61,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"J\xE9...
     Jejeje...\",\"parentUIDs\":[60],\"AdvanceDialogueAutomatically\":false,\"AudioGUID\":null,\"AutoAdvanceShouldDisplayOption\":false,\"IconGUID\":null,\"Name\":\"MC
-    Jakub\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0.611},{\"Connections\":[{\"__type\":\"EditableOptionConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":64}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":1140.66541,\"yPos\":1440.0022},\"ID\":63,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"Un
+    Jakub\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0.611},{\"Connections\":[{\"__type\":\"EditableOptionConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":64}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":1220.66565,\"yPos\":2628.66943},\"ID\":63,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"Un
     reproductor de tablillas. Marca de la casa, chaval.\",\"parentUIDs\":[62],\"AdvanceDialogueAutomatically\":false,\"AudioGUID\":null,\"AutoAdvanceShouldDisplayOption\":false,\"IconGUID\":null,\"Name\":\"MC
-    Jakub\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0.559},{\"Connections\":[{\"__type\":\"EditableOptionConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":66}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":687.332642,\"yPos\":1430.66919},\"ID\":65,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"\xA1Un
+    Jakub\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0.559},{\"Connections\":[{\"__type\":\"EditableOptionConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":66}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":767.3328,\"yPos\":2619.33643},\"ID\":65,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"\xA1Un
     Jakman tio! \xBFEl Jakubix 230c? \xA1T\xEDo!\",\"parentUIDs\":[64],\"AdvanceDialogueAutomatically\":false,\"AudioGUID\":null,\"AutoAdvanceShouldDisplayOption\":false,\"IconGUID\":null,\"Name\":\"MC
-    Jakub\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0.607},{\"Connections\":[{\"__type\":\"EditableOptionConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":68}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":921.333252,\"yPos\":1534.001},\"ID\":67,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"T\xEDo...
+    Jakub\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0.607},{\"Connections\":[{\"__type\":\"EditableOptionConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":68}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":1001.3335,\"yPos\":2722.668},\"ID\":67,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"T\xEDo...
     es... reproduce m\xFAsica. \",\"parentUIDs\":[66],\"AdvanceDialogueAutomatically\":false,\"AudioGUID\":null,\"AutoAdvanceShouldDisplayOption\":false,\"IconGUID\":null,\"Name\":\"MC
-    Jakub\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0},{\"Connections\":[{\"__type\":\"EditableOptionConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":70}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":1143.99915,\"yPos\":1605.33008},\"ID\":69,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"Y
+    Jakub\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0},{\"Connections\":[{\"__type\":\"EditableOptionConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":70}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":1223.99939,\"yPos\":2793.99756},\"ID\":69,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"Y
     tanto que \\\"\xA1Oh!\\\" chaval, y trae inclu\xEDdos algunos de mis temas favoritos.
     J\xE9...\",\"parentUIDs\":[68],\"AdvanceDialogueAutomatically\":false,\"AudioGUID\":null,\"AutoAdvanceShouldDisplayOption\":false,\"IconGUID\":null,\"Name\":\"MC
-    Jakub\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0.585},{\"Connections\":[{\"__type\":\"EditableOptionConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":72},{\"__type\":\"EditableOptionConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":73}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":691.3331,\"yPos\":1627.32983},\"ID\":71,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"Nada,
+    Jakub\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0.585},{\"Connections\":[{\"__type\":\"EditableOptionConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":72},{\"__type\":\"EditableOptionConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":73}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":771.3333,\"yPos\":2815.99756},\"ID\":71,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"Nada,
     nada, un placer. Te voy a pedir un favorcito... un favorcilluelo peque\xF1\xEDsimo...\",\"parentUIDs\":[70],\"AdvanceDialogueAutomatically\":false,\"AudioGUID\":null,\"AutoAdvanceShouldDisplayOption\":false,\"IconGUID\":null,\"Name\":\"MC
-    Jakub\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0.629},{\"Connections\":[{\"__type\":\"EditableOptionConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":79}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":909.9995,\"yPos\":1795.32935},\"ID\":74,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"\xA1J\xE1!
+    Jakub\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0.629},{\"Connections\":[{\"__type\":\"EditableOptionConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":79}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":989.9997,\"yPos\":2983.997},\"ID\":74,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"\xA1J\xE1!
     Bien dicho. Pero es gratis, no te rayes compa.\",\"parentUIDs\":[73],\"AdvanceDialogueAutomatically\":false,\"AudioGUID\":null,\"AutoAdvanceShouldDisplayOption\":false,\"IconGUID\":null,\"Name\":\"MC
-    Jakub\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0.581},{\"Connections\":[{\"__type\":\"EditableOptionConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":76},{\"__type\":\"EditableOptionConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":78}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":689.999634,\"yPos\":1803.99658},\"ID\":75,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"\xBFSeguro?\",\"parentUIDs\":[72],\"AdvanceDialogueAutomatically\":false,\"AudioGUID\":null,\"AutoAdvanceShouldDisplayOption\":false,\"IconGUID\":null,\"Name\":\"MC
-    Jakub\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0.574},{\"Connections\":[{\"__type\":\"EditableOptionConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":81}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":947.998657,\"yPos\":1975.32715},\"ID\":80,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"Solo
+    Jakub\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0.581},{\"Connections\":[{\"__type\":\"EditableOptionConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":76},{\"__type\":\"EditableOptionConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":78}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":769.9998,\"yPos\":2992.664},\"ID\":75,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"\xBFSeguro?\",\"parentUIDs\":[72],\"AdvanceDialogueAutomatically\":false,\"AudioGUID\":null,\"AutoAdvanceShouldDisplayOption\":false,\"IconGUID\":null,\"Name\":\"MC
+    Jakub\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0.574},{\"Connections\":[{\"__type\":\"EditableOptionConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":81}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":1027.99866,\"yPos\":3163.99414},\"ID\":80,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"Solo
     quiero que si te encuentras alguno de mis Cassettes Asirios... que lo recojas.
     A veces voy un poco ciego y se me caen por ah\xED.\",\"parentUIDs\":[76,78,79],\"AdvanceDialogueAutomatically\":false,\"AudioGUID\":null,\"AutoAdvanceShouldDisplayOption\":false,\"IconGUID\":null,\"Name\":\"MC
-    Jakub\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0.618},{\"Connections\":[{\"__type\":\"EditableOptionConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":83},{\"__type\":\"EditableOptionConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":84}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":1219.33191,\"yPos\":1879.99365},\"ID\":82,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"\xA1Yea!
+    Jakub\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0.618},{\"Connections\":[{\"__type\":\"EditableOptionConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":83},{\"__type\":\"EditableOptionConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":84}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":1299.33191,\"yPos\":3068.66064},\"ID\":82,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"\xA1Yea!
     Ale pues, voy a hacer desaparecer la misteriosa pared invisible para que puedas
     avanzar. \xA1Suerte compa!\",\"parentUIDs\":[81],\"AdvanceDialogueAutomatically\":false,\"AudioGUID\":null,\"AutoAdvanceShouldDisplayOption\":false,\"IconGUID\":null,\"Name\":\"MC
     Jakub\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0.618}]}"
@@ -9726,7 +9770,19 @@ MonoBehaviour:
   EndConversationFont: {fileID: 0}
   Event:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 171362289}
+        m_TargetAssemblyTypeName: DestruirJakub, Assembly-CSharp
+        m_MethodName: HideObstacle
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!4 &1822736352
 Transform:
   m_ObjectHideFlags: 0
@@ -10020,19 +10076,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 5036687291631502173, guid: 71402c58057824f44b599bc9e1c3c96a, type: 3}
   m_PrefabInstance: {fileID: 337182146}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1968623743
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1968623742}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 728d521d3e0d781488b8831aeeb0cd45, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sceneName: SCENE 2 TUTORIAL
 --- !u!65 &1968623748
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -10054,6 +10097,22 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2.0000005, y: 1.9999999, z: 4.8254313}
   m_Center: {x: 0, y: 0, z: 1.4127157}
+--- !u!114 &1968623749
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1968623742}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b847ada3e08e96a4b924ce01225ac8bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneToLoad: SCENE 2 TUTORIAL
+  transitionRawImage: {fileID: 2017727567}
+  transitionSound: {fileID: 8300000, guid: 951d21fbb35863a408ba882f41088857, type: 3}
+  transitionDuration: 2
 --- !u!1 &2002454059
 GameObject:
   m_ObjectHideFlags: 0
@@ -10386,6 +10445,78 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2012226119}
+  m_CullTransparentMesh: 1
+--- !u!1 &2017727565
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2017727566}
+  - component: {fileID: 2017727568}
+  - component: {fileID: 2017727567}
+  m_Layer: 5
+  m_Name: TRANSICION
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &2017727566
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2017727565}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1586668962}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 1173.8, y: 682.6}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &2017727567
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2017727565}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1344c3c82d62a2a41a3576d8abb8e3ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Texture: {fileID: 2800000, guid: 8537c725b578aac4a807a8375fba7e81, type: 3}
+  m_UVRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
+--- !u!222 &2017727568
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2017727565}
   m_CullTransparentMesh: 1
 --- !u!1 &2030818075
 GameObject:

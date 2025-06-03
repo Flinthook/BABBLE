@@ -10,6 +10,8 @@ public class SceneIntroVideo : MonoBehaviour
     // Unique key for each scene to track if video was played
     private string GetSceneKey() => "IntroPlayed_" + SceneManager.GetActiveScene().name;
 
+    private bool videoPlaying = false;
+
     void Start()
     {
         // Check if the intro video for this scene has already played
@@ -21,6 +23,7 @@ public class SceneIntroVideo : MonoBehaviour
             // Play the video
             videoPlayer.gameObject.SetActive(true);
             videoPlayer.Play();
+            videoPlaying = true;
 
             // Subscribe to video end event
             videoPlayer.loopPointReached += OnVideoFinished;
@@ -33,7 +36,20 @@ public class SceneIntroVideo : MonoBehaviour
         }
     }
 
+    void Update()
+    {
+        if (videoPlaying && Input.GetKeyDown(KeyCode.Escape))
+        {
+            EndVideoEarly();
+        }
+    }
+
     private void OnVideoFinished(VideoPlayer vp)
+    {
+        EndVideoEarly();
+    }
+
+    private void EndVideoEarly()
     {
         // Mark as played
         PlayerPrefs.SetInt(GetSceneKey(), 1);
@@ -43,9 +59,13 @@ public class SceneIntroVideo : MonoBehaviour
         if (player != null) player.enabled = true;
 
         // Hide video
-        if (videoPlayer != null) videoPlayer.gameObject.SetActive(false);
+        if (videoPlayer != null)
+        {
+            videoPlayer.Stop();
+            videoPlayer.gameObject.SetActive(false);
+            videoPlayer.loopPointReached -= OnVideoFinished;
+        }
 
-        // Unsubscribe
-        videoPlayer.loopPointReached -= OnVideoFinished;
+        videoPlaying = false;
     }
 }

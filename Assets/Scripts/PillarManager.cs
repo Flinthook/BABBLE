@@ -15,13 +15,14 @@ public class PillarManager : MonoBehaviour
     public Transform teleportTarget;
     public AudioSource audioSource;
     public AudioClip warningClip;
-    public TMPro.TextMeshProUGUI warningText;
+    public RawImage warningImage; // Assign your warning RawImage in the Inspector
+    public RawImage finalWarningImage; // Assign a RawImage for the last pillar warning
+    public AudioClip finalWarningClip; // Assign an audio clip for the last pillar warning
 
-    // New: Particle system and multiple meshes to activate
-    public GameObject rainParticleSystemGroup; // Assign the empty parent GameObject in Inspector
-    public GameObject[] meshesToActivate;     // Assign all meshes in Inspector
-    public Transform newRespawnPoint;         // Assign new respawn point in Inspector
-    public GameObject[] meshesToDestroy; // Assign all meshes to destroy in Inspector
+    public GameObject rainParticleSystemGroup;
+    public GameObject[] meshesToActivate;
+    public Transform newRespawnPoint;
+    public GameObject[] meshesToDestroy;
 
     private void Awake()
     {
@@ -35,9 +36,6 @@ public class PillarManager : MonoBehaviour
         destroyedPillars++;
         Debug.Log($"Pillar destroyed! {destroyedPillars}/{totalPillars}");
 
-        // Do something each time a pillar is destroyed
-        // For example, play a sound, update UI, etc.
-
         if (destroyedPillars == 2)
         {
             OnTwoPillarsDestroyed();
@@ -45,7 +43,7 @@ public class PillarManager : MonoBehaviour
 
         if (destroyedPillars >= totalPillars)
         {
-            AllPillarsDestroyed();
+            StartCoroutine(ShowFinalWarningAndLoadScene());
         }
     }
 
@@ -69,11 +67,11 @@ public class PillarManager : MonoBehaviour
         if (audioSource != null && warningClip != null)
             StartCoroutine(PlayWarningSoundRepeatedly(3, 0.7f)); // Play 3 times, 0.7s apart
 
-        // 5. Show warning text for a few seconds
-        if (warningText != null)
+        // 5. Show warning image for a few seconds
+        if (warningImage != null)
         {
-            warningText.gameObject.SetActive(true);
-            StartCoroutine(HideWarningTextAfterSeconds(3f));
+            warningImage.gameObject.SetActive(true);
+            StartCoroutine(HideWarningImageAfterSeconds(3f));
         }
 
         // 6. Activate particle system group
@@ -110,22 +108,48 @@ public class PillarManager : MonoBehaviour
             player.IncreaseGravityUntilGrounded();
     }
 
-    private IEnumerator HideWarningTextAfterSeconds(float seconds)
+    private IEnumerator ShowFinalWarningAndLoadScene()
     {
-        yield return new WaitForSeconds(seconds);
-        if (warningText != null)
-            warningText.gameObject.SetActive(false);
-    }
+        Debug.Log("All pillars destroyed! Showing final warning and loading scene: SCENE 4 POLILLA");
 
-    private void AllPillarsDestroyed()
-    {
-        Debug.Log("All pillars destroyed! Loading scene: SCENE 4 POLILLA");
+        // Show final warning image
+        if (finalWarningImage != null)
+            finalWarningImage.gameObject.SetActive(true);
+
+        // Play final warning sound
+        if (audioSource != null && finalWarningClip != null)
+            audioSource.PlayOneShot(finalWarningClip);
+
+        // Wait for the duration of the sound or 2 seconds if no sound
+        float waitTime = (finalWarningClip != null) ? finalWarningClip.length : 2f;
+        yield return new WaitForSeconds(waitTime);
+
+        // Hide the image
+        if (finalWarningImage != null)
+            finalWarningImage.gameObject.SetActive(false);
 
         // Increase gravity until the player is grounded again
         if (player != null)
             player.IncreaseGravityUntilGrounded();
 
+        // Load the next scene
         SceneManager.LoadScene("SCENE 4 POLILLA");
+    }
+
+    private IEnumerator HideWarningImageAfterSeconds(float seconds)
+    {
+        yield return new WaitForSeconds(seconds);
+        if (warningImage != null)
+            warningImage.gameObject.SetActive(false);
+    }
+
+    private IEnumerator PlayWarningSoundRepeatedly(int times, float interval)
+    {
+        for (int i = 0; i < times; i++)
+        {
+            audioSource.PlayOneShot(warningClip);
+            yield return new WaitForSeconds(interval);
+        }
     }
 
     void Update()
@@ -133,22 +157,11 @@ public class PillarManager : MonoBehaviour
         // For testing: Press J to destroy two pillars instantly
         if (Input.GetKeyDown(KeyCode.J))
         {
-            // Only trigger if not already at or above 2
             if (destroyedPillars < 2)
             {
                 destroyedPillars = 2;
                 OnTwoPillarsDestroyed();
             }
-        }
-    }
-
-    // Add this coroutine to your class:
-    private IEnumerator PlayWarningSoundRepeatedly(int times, float interval)
-    {
-        for (int i = 0; i < times; i++)
-        {
-            audioSource.PlayOneShot(warningClip);
-            yield return new WaitForSeconds(interval);
         }
     }
 }
