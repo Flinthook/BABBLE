@@ -17,7 +17,7 @@ public class CassetteMenuManager : MonoBehaviour
     private int currentIndex = 0;
     private bool menuOpen = false;
 
-    void Awake()
+    void Start()
     {
         soundManager = SoundManager.Instance;
     }
@@ -49,10 +49,18 @@ public class CassetteMenuManager : MonoBehaviour
 
     void ShowCurrentSong()
     {
+        if (soundManager == null || soundManager.soundClips == null || soundManager.soundClipInfo == null)
+        {
+            Debug.LogError("SoundManager or its lists are not assigned!");
+            return;
+        }
+
         if (soundManager.soundClips.Count == 0)
         {
-            songInfoText.text = "No songs collected";
-            cassetteImage.enabled = false;
+            if (songInfoText != null)
+                songInfoText.text = "No songs collected";
+            if (cassetteImage != null)
+                cassetteImage.enabled = false;
             playButton.interactable = false;
             stopButton.interactable = false;
             nextButton.interactable = false;
@@ -60,15 +68,16 @@ public class CassetteMenuManager : MonoBehaviour
             return;
         }
 
-        songInfoText.text = soundManager.soundClipInfo[currentIndex];
+        if (songInfoText != null)
+            songInfoText.text = soundManager.soundClipInfo[currentIndex];
 
         // Show cassette image if available
-        if (soundManager.cassetteImages != null && soundManager.cassetteImages.Count > currentIndex && soundManager.cassetteImages[currentIndex] != null)
+        if (cassetteImage != null && soundManager.cassetteImages != null && soundManager.cassetteImages.Count > currentIndex && soundManager.cassetteImages[currentIndex] != null)
         {
             cassetteImage.sprite = soundManager.cassetteImages[currentIndex];
             cassetteImage.enabled = true;
         }
-        else
+        else if (cassetteImage != null)
         {
             cassetteImage.enabled = false;
         }
